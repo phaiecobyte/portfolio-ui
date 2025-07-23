@@ -21,6 +21,11 @@ export class Navbar {
       routerLink:'home'
     },
     {
+      label:'nav.projects',
+      icon:'fa-solid fa-code',
+      routerLink:'projects'
+    },
+    {
       label:'nav.about',
       icon:'fa-regular fa-circle-user',
       routerLink:'about'

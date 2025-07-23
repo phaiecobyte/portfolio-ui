@@ -21,9 +21,9 @@
           </li>
         }
       </ul>
-      <div class="dropdown">
+      <div class="dropdown me-2">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            
+
           <i class="fa-solid fa-globe"></i>
           {{ 'language.' + currentLang | translate }}
         </button>
@@ -32,6 +32,7 @@
           <li><a class="dropdown-item" (click)="switchLanguage('km')"><span class="fi fi-kh me-1"></span> {{ 'language.km' | translate }} </a></li>
         </ul>
       </div>
+      <button class="btn btn-outline-success">{{'Login' | translate}}</button>
     </div>
   </div>
 </nav>
