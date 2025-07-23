@@ -1,5 +1,11 @@
 {
-    "home":"Home",
-    "about":"About",
-    "contact":"Contact"
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "language": {
+    "en": "English",
+    "km": "Khmer"
+  }
 }

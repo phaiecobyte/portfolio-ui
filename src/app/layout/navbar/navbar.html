@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body position-sticky" data-bs-theme="dark">
   <div class="container">
-    <a class="navbar-brand" href="#">
-        <img src="./phaiecobyte.svg" alt="">
-        phaiecobyte
+    <a class="navbar-brand" href="#" >
+      <img src="./phaiecobyte.svg" alt="" class="d-inline-block align-text-center">
+      phaiecobyte
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,25 +10,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         @for (item of navItems; track $index) {
-            <li class="nav-item">
-                <a  class="nav-link"
-                    routerLinkActive="true"
-                    [routerLinkActiveOptions]="{exact:true}">
-                    <i class="{{item.icon}}"></i>
-                    {{item.label}}
-                </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link"
+               [routerLink]="[item.routerLink]"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact:true}">
+              <i class="{{item.icon}}"></i>
+              {{ item.label | translate }}
+            </a>
+          </li>
         }
       </ul>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-solid fa-globe"></i>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-        <li><a class="dropdown-item" href="#">English</a></li>
-        <li><a class="dropdown-item" href="#">Khmer</a></li>
-      </ul>
-    </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            
+          <i class="fa-solid fa-globe"></i>
+          {{ 'language.' + currentLang | translate }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+          <li><a class="dropdown-item" (click)="switchLanguage('en')"><span class="fi fi-sh me-1"></span> {{ 'language.en' | translate }} </a></li>
+          <li><a class="dropdown-item" (click)="switchLanguage('km')"><span class="fi fi-kh me-1"></span> {{ 'language.km' | translate }} </a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
