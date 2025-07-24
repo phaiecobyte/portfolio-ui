@@ -7,6 +7,11 @@ export const routes: Routes = [
     component: Main,
     children: [
       {
+        path:'',
+        redirectTo:'home',
+        pathMatch:'full'
+      },
+      {
         path: 'home',
         loadComponent: () => import('./pages/home/home').then((c) => c.Home),
       },
@@ -20,8 +25,12 @@ export const routes: Routes = [
       },
       {
         path:'projects',
-        loadComponent:()=>import('./pages/project/project').then(c=>c.Project)
+        loadComponent:()=>import('./pages/project/project').then(c=>c.ProjectComponent)
       }
     ],
   },
+  {
+    path:'login',
+    loadComponent:()=>import('./pages/login/login').then(c=>c.Login)
+  }
 ];

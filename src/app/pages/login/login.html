@@ -1,0 +1,35 @@
+<div class="hero-img">
+    <div class="container">
+        <div class="row justify-content-center w-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-lg border-1 rounded-4 bg-transparent text-light glass">
+                    <div class="card-header text-center p-4">
+                        <h2 class="mb-0">PhaiEcobyte</h2>
+                        <p class="mb-0">Please sign in to continue</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <form [formGroup]="frm" (ngSubmit)="onSubmit()">
+                            <app-input formControlName="phoneNumber" label="Username" placeholder="Enter your username"
+                                type="text" prefixIcon="fa fa-user" [showErr]="isFieldInvalid('username')"
+                                errMsg="Username is required!" />
+                            <app-input formControlName="password" label="Password" placeholder="Enter your password"
+                                type="password" prefixIcon="fa fa-lock" [showErr]="isFieldInvalid('password')"
+                                errMsg="Password is required!" />
+                            <div class="d-grid gap-2 d-md-flex mt-4">
+                                <button class="btn btn-outline-success text-light py-2 flex-grow-1" type="submit">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                                </button><br />
+                                <button class="btn btn-outline-secondary py-2 text-light " type="reset"
+                                    (click)="onBackHome()">Back</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center py-3 text-light">
+                        <small>Copyright © 2025 phaiecobyte</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,44 @@
+import { Component } from '@angular/core';
+import { InputComponent } from '../../components/input';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  imports: [InputComponent,ReactiveFormsModule],
+  templateUrl: './login.html',
+  styleUrl: './login.css'
+})
+export class Login {
+  frm!:FormGroup;
+
+    constructor(
+        private fb:FormBuilder,
+        private router:Router,
+    ){}
+
+    ngOnInit(): void {
+        this.frm = this.fb.group({
+            phoneNumber:['', [Validators.required]],
+            password:['', [Validators.required]]
+        });
+    }
+
+    isFieldInvalid(field:string):boolean{
+        const control = this.frm.get(field);
+        return control ? (control.invalid && control.touched) :false;
+    }
+
+    onSubmit(){
+        if(this.frm.invalid){
+            this.frm.markAllAsTouched();
+            return;
+        }else{
+           
+        }
+    }
+
+  onBackHome(){
+    this.router.navigate(['/home'])
+  }
+}
