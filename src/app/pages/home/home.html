@@ -1,98 +1,17 @@
-<div class="home-container">
-  <!-- Geometric Background -->
-  <div class="geometric-bg"></div>
-
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-content">
-        <div class="profile-section">
-          <div class="profile-container">
-            <img src="./phai.jpg" alt="Profile" class="profile-image">
-            <div class="status-indicator">
-              <span class="status-dot"></span>
-              <span class="status-text">Available for projects</span>
-            </div>
-          </div>
+<section class="hero">
+    <div class="hero-content">
+      <div class="text">
+        <h1>{{'home.title' | translate}}</h1>
+        <h2>{{'home.subtitle' | translate}}</h2>
+        <p> {{'home.description' | translate}}</p>
+        <div class="cta-buttons">
+          <a href="projects" class="btn primary">{{'See Projects' | translate}}</a>
+          <a href="contact" class="btn secondary">{{'Contact Me' | translate}}</a>
         </div>
-        
-        <div class="text-content">
-          <h1 class="glitch" data-text="phaiecobyte">phaiecobyte</h1>
-          <p class="subtitle">Backend Developer</p>
-          <div class="tech-stack">
-            <span class="tech-badge">TypeScript</span>
-            <span class="tech-badge">Angular</span>
-            <span class="tech-badge">Spring Boot</span>
-            <span class="tech-badge">.Net Framework</span>
-            <span class="tech-badge">Laravel</span>
-          </div>
-        </div>
-
-        <div class="cta-section">
-          <a routerLink="/projects" class="cta-button primary">
-            <span class="button-content">
-              <i class="fa-solid fa-rocket"></i>
-              <span>View Projects</span>
-            </span>
-          </a>
-          <a routerLink="/contact" class="cta-button secondary">
-            <span class="button-content">
-              <i class="fa-solid fa-paper-plane"></i>
-              <span>Get in Touch</span>
-            </span>
-          </a>
-        </div>
-
-        <div class="social-links">
-          <a href="https://github.com/phaiecobyte" target="_blank" class="social-link">
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/phai-%F0%9F%85%BF%EF%B8%8F-5178a5276/" target="_blank" class="social-link">
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-          <a href="https://www.tiktok.com/@phaiecobyte" target="_blank" class="social-link">
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-          <a href="https://hub.docker.com/repositories/phaidocker" target="_blank" class="social-link">
-            <i class="fa-brands fa-docker"></i>
-          </a>
-        </div>
+      </div>
+      <div class="image">
+        <img src="phai.jpg" alt="Phai Profile" />
       </div>
     </div>
   </section>
-
-  <!-- Featured Work Section -->
-  <section class="featured-work">
-    <div class="container">
-      <h2 class="section-title">What I Do</h2>
-      <div class="work-grid">
-        <div class="work-card">
-          <div class="card-icon">
-            <i class="fa-solid fa-code"></i>
-          </div>
-          <h3>Web Development</h3>
-          <p>Building modern web applications with cutting-edge technologies</p>
-          <div class="card-background"></div>
-        </div>
-
-        <div class="work-card">
-          <div class="card-icon">
-            <i class="fa-solid fa-database"></i>
-          </div>
-          <h3>Backend Solutions</h3>
-          <p>Crafting robust and scalable backend architectures</p>
-          <div class="card-background"></div>
-        </div>
-
-        <div class="work-card">
-          <div class="card-icon">
-            <i class="fa-solid fa-palette"></i>
-          </div>
-          <h3>UI/UX Design</h3>
-          <p>Creating intuitive and engaging user experiences</p>
-          <div class="card-background"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+  

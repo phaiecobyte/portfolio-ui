@@ -1,12 +1,18 @@
 {
   "nav": {
     "home": "Home",
+    "projects":"Projects",
     "about": "About",
     "contact": "Contact"
   },
   "language": {
     "en": "English",
     "km": "Khmer"
+  },
+  "home":{
+    "title":"Hello, I'm Phai",
+    "subtitle":"Web Developer",
+    "description":"I am a web developer with hands-on experience in Spring Boot, Asp.Net Core Web Api, Laravel and Angular (TypeScript). I have a strong interest in technology and software development, and I’m always eager to improve my skills and learn new things. My long-term dream is to run my own software company, where I can lead meaningful projects and help others grow in tech. Outside of work, I enjoy meditation, reading, and spending quality time talking with my both sisters—they keep me grounded and inspired."
   },
   "get in touch":"Get in Touch"
 }
