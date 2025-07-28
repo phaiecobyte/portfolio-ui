@@ -13,83 +13,86 @@
   <hr>
   <div class="row mb-4">
 
-    <!-- start left col -->
-    <div class="col-3 border pt-3">
-      <h5 class="fw-bold text-gradient">Contact</h5>
-      <ul class="list-unstyled mb-5">
-        @for (item of contacts; track $index) {
-          <li class="mb-3" >
-            <a href="{{item.link}}" class="text-decoration-none text-dark">
-              <i class="{{item.icon}} me-3"></i>
-              {{item.name}}
-            </a>
-          </li>
-        }
-      </ul>
+  <!-- start left col -->
+  <div class="col-12 col-md-3 border pt-3 px-3">
+    <h5 class="fw-bold text-gradient">Contact</h5>
+    <ul class="list-unstyled mb-5">
+      @for (item of contacts; track $index) {
+        <li class="mb-3">
+          <a href="{{item.link}}" class="text-decoration-none text-dark">
+            <i class="{{item.icon}} me-3"></i>
+            {{item.name}}
+          </a>
+        </li>
+      }
+    </ul>
 
-      <h5 class="fw-bold text-gradient">Education</h5>
-      <ul class="list-unstyled mb-5">
-        @for (item of education; track $index) {
+    <h5 class="fw-bold text-gradient">Education</h5>
+    <ul class="list-unstyled mb-5">
+      @for (item of education; track $index) {
+        <li class="mb-3">
+          <span class="fw-bold">{{item.degree}} {{item.mejor}}</span><br>
+          <span class="text-muted">{{item.schoolName}}</span> |
+          <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span><br>
+          <span class="text-muted">{{item.address}}</span>
+        </li>
+      }
+    </ul>
+
+    <h5 class="fw-bold text-gradient">Language</h5>
+    <ul class="list-unstyled mb-5">
+      @for (item of languages; track $index) {
+        <li>
+          <span class="{{item.icon}}"></span>
+          {{item.name}}
+        </li>
+        <div class="progress mb-2">
+          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.percent"></div>
+        </div>
+      }
+    </ul>
+
+    <h5 class="fw-bold text-gradient">Reference</h5>
+    <ul class="list-unstyled mb-5">
+      <!-- Add reference items here -->
+    </ul>
+  </div>
+  <!-- end left col -->
+
+  <!-- start right column -->
+  <div class="col-12 col-md-9 border pt-3 px-3">
+    <div class="ms-md-5 mb-5">
+      <h5 class="fw-bold text-gradient">Experiences</h5>
+      @for (item of experiences; track $index) {
+        <ul class="list-unstyled">
           <li class="mb-3">
-            <span class="fw-bold"> {{item.degree}} {{item.mejor}} </span><br>
-            <span class="text-muted">{{item.schoolName}}</span> |
-            <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span> <br>
-            <span class="text-muted ">{{item.address}}</span>
-        }
-      </ul>
+            <span class="fw-bold">{{item.position}}</span> |
+            <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span><br>
+            {{item.description}}
+          </li>
+        </ul>
+      }
+    </div>
 
-      <h5 class="fw-bold text-gradient">Language</h5>
-      <ul class="list-unstyled mb-5">
-        @for (item of languages; track $index) {
-          <li>
-            <span class="{{item.icon}}"></span>
+    <div class="ms-md-5">
+      <h5 class="fw-bold text-gradient">Skills</h5>
+      @for (item of skills; track $index) {
+        <ul class="list-unstyled">
+          <li class="mb-3">
+            <i class="{{item.icon}} me-3"></i>
             {{item.name}}
           </li>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.percent"></div>
-          </div>
-        }
-      </ul>
-
-      <h5 class="fw-bold text-gradient">Reference</h5>
-      <ul class="list-unstyled mb-5">
-       
-      </ul>
+        </ul>
+        <div class="progress mb-2">
+          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.percent"></div>
+        </div>
+      }
     </div>
-    <!-- end left col -->
-
-    <!-- start right colum -->
-    <div class="col border pt-3">
-      <div class="ms-5 mb-5">
-        <h5 class="fw-bold text-gradient">Experiences</h5>
-        @for (item of experiences; track $index) {
-          <ul class="list-unstyled">
-            <li class="mb-3">
-              <span class="fw-bold">{{item.position}}</span> | <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span> <br>
-              {{item.description}}
-            </li>
-          </ul>
-        }
-      </div>
-
-      <div class="ms-5">
-        <h5 class="fw-bold text-gradient">Skills</h5>
-        @for (item of skills; track $index) {
-          <ul class="list-unstyled">
-            <li class="mb-3">
-              <i class="{{item.icon}} me-3"></i>
-              {{item.name}}
-            </li>
-          </ul>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.percent"></div>
-          </div>
-        }
-      </div>
-    </div>
-    <!-- end right column -->
-
   </div>
+  <!-- end right column -->
+
+</div>
+
   
 </div>
 
