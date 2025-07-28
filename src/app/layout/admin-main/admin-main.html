@@ -1,0 +1,59 @@
+<nz-layout>
+    <!-- Sidebar -->
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" nzBreakpoint="md" [nzCollapsedWidth]="0">
+        <div class="logo">
+            <img src="./phaiecobyte.svg" alt="" width="45" class="border rounded-circle">
+            <span class="ms-2 mt-2">PhaiEcobyte</span>
+        </div>
+        <ul class="nav flex-column mt-3 p-3">
+            @for (item of items; track $index) {
+            <li class="nav-item mb-2">
+                <a class="nav-link sidebar-link d-flex align-items-center px-3 py-3 rounded text-light"
+                    [routerLink]="item.routeLink" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <i [class]="item.icon + ' sidebar-icon'"></i>
+                    <span class="sidebar-text ms-3">{{ item.label }}</span>
+                </a>
+            </li>
+            }
+        </ul>
+    </nz-sider>
+
+    <!-- Main Layout -->
+    <nz-layout>
+        <!-- Header with menu toggle -->
+        <nz-header class="d-flex align-items-center px-3 bg-white shadow-sm">
+            <nz-icon class="trigger me-3" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                (click)="isCollapsed = !isCollapsed"></nz-icon>
+            <span class="fs-5 fw-bold">{{pageTitleService.pageTitle()}}</span>
+        </nz-header>
+
+        <!-- Content -->
+        <nz-content class="p-4">
+                <div class="header">
+                    <nz-breadcrumb>
+                        <nz-breadcrumb-item>admin</nz-breadcrumb-item>
+                        <nz-breadcrumb-item>{{pageTitleService.pageTitle()}}</nz-breadcrumb-item>
+                    </nz-breadcrumb>
+                    @if(this.pageTitleService.pageTitle() === 'Project'){
+                        <app-btn-trigger target="#projectModal" txtBtnOpenModal="Insert New" icon="fa-solid fa-plus"/>
+                    }@else if (this.pageTitleService.pageTitle() === 'Skill') {
+                        <app-btn-trigger target="#skillModal" txtBtnOpenModal="Insert New" icon="fa-solid fa-plus"/>
+                    }@else if (this.pageTitleService.pageTitle() === 'Education') {
+                        <app-btn-trigger target="#eduModal" txtBtnOpenModal="Insert New" icon="fa-solid fa-plus"/>
+                    }@else if (this.pageTitleService.pageTitle() === 'Language') {
+                        <app-btn-trigger target="#langModal" txtBtnOpenModal="Insert New" icon="fa-solid fa-plus"/>
+                    }@else if (this.pageTitleService.pageTitle() === 'Experience') {
+                        <app-btn-trigger target="#expModal" txtBtnOpenModal="Insert New" icon="fa-solid fa-plus"/>
+                    }@else if (this.pageTitleService.pageTitle() === 'Reference') {
+                        <app-btn-trigger target="#refModal" txtBtnOpenModal="Insert New" icon="fa-solid fa-plus"/>
+                    }
+                </div>
+            <div class="inner-content mt-3">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+        <nz-footer>
+            
+        </nz-footer>
+    </nz-layout>
+</nz-layout>

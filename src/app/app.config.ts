@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, importProvidersFrom, APP_INITIALIZER } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -12,12 +12,28 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { KeycloakService, provideKeycloak } from 'keycloak-angular';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
 }
 
+
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8080', // Keycloak server URL
+        realm: 'myrealm',
+        clientId: 'myclient',
+      },
+      initOptions: {
+        onLoad: 'login-required',
+        checkLoginIframe: false,
+      },
+    });
+}
 registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
@@ -36,5 +52,15 @@ export const appConfig: ApplicationConfig = {
         }
       })
     )
+    // {
+    //   provide:KeycloakService,
+    //   useClass:KeycloakService
+    // },
+    // {
+    //   provide:APP_INITIALIZER,
+    //   useFactory:initializeKeycloak,
+    //   deps:[KeycloakService],
+    //   multi:true
+    // }
   ]
 };

@@ -1,0 +1,85 @@
+
+  <div class="row">
+    @for (project of projects; track $index) {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{project.name}}</h5>
+            <p class="card-text">{{project.description}}</p>
+            <div class="mb-2">
+              @for (tech of project.tech; track $index) {
+                <span class="badge bg-secondary me-1">{{tech}}</span>
+              }
+            </div>
+            <a href="{{project.sourceCodeUrl}}" target="_blank" class="btn btn-outline-success btn-sm">
+              <i class="fa-brands fa-github me-1"></i>View Code
+            </a>
+            @if (project.demoVideoUrl) {
+              <div class="mt-3 ratio ratio-16x9">
+                <iframe width="864" height="486" 
+                        [src]="project.demoVideoUrl| safeUrl"
+                        title="" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                        encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                      </iframe>
+              </div>
+            }
+             <div class="flex mt-3 text-end">
+                 <button class="btn btn-sm btn-outline-success ms-1 me-1" data-bs-toggle="modal" data-bs-target="#projectEditModal" (click)="setFrmValue(project)">Edit</button>
+                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#projectDelModal" (click)="getById(project.id)">Del</button>
+             </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+
+<app-modal
+    #projectModal
+    [id]="'projectModal'"
+    title="Insert New Project"
+    (saveClicked)="create()"
+>
+    <form [formGroup]="frm">
+        <app-input label="Project Name" formControlName="name"/>
+        <app-input label="Technology" formControlName="tech"/>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Description</label>
+            <textarea rows="4" class="form-control" formControlName="description" placeholder="Leave a comment here" id="desc"></textarea>
+        </div>
+        <app-input label="Source Code Link" formControlName="sourceCodeUrl"/>
+        <app-input label="Demo Video Link" formControlName="demoVideoUrl"/>
+    </form>
+</app-modal>
+
+<app-modal
+    #projectEditModal
+    [id]="'projectEditModal'"
+    title="Update Project proj-{{frm.value.id}}"
+    (saveClicked)="update()"
+    classbtnSave="btn btn-success"
+>
+    <form [formGroup]="frm">
+        <app-input label="Project Name" formControlName="name"/>
+        <app-input label="Technology" formControlName="tech"/>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Description</label>
+            <textarea rows="4" class="form-control" formControlName="description" placeholder="Leave a comment here" id="desc"></textarea>
+        </div>
+        <app-input label="Source Code Link" formControlName="sourceCodeUrl"/>
+        <app-input label="Demo Video Link" formControlName="demoVideoUrl"/>
+    </form>
+</app-modal>
+
+
+<app-modal
+    #projectDelModal
+    [id]="'projectDelModal'"
+    title="Alert"
+    classbtnSave="btn btn-danger"
+    (saveClicked)="delete()"
+    >
+    <p>Are you sure to delete this project?</p>
+</app-modal>

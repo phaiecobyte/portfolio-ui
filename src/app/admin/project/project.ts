@@ -1,0 +1,133 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PageTitleService } from '../../services/page-title.service';
+import { StaticBackDropModal } from "../../components/static-backdrop-modal";
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ProjectService } from '../../services/project.service';
+import { InputComponent } from "../../components/input";
+import { AlertService } from '../../services/alert.service';
+import { TextArea } from "../../components/text-area";
+import { SafeUrlPipe } from "../../pipe/safe-url-pipe";
+declare var bootstrap: any;
+
+@Component({
+  selector: 'app-project',
+  imports: [StaticBackDropModal, NzBreadCrumbModule, ReactiveFormsModule, InputComponent, SafeUrlPipe],
+  templateUrl: './project.html',
+  styleUrl: './project.css'
+})
+export class Project implements OnInit{
+  frm!:FormGroup;
+  projects:any;
+  selectedId:number=0;
+
+  @ViewChild('projectModal') projectModal!: StaticBackDropModal;
+  @ViewChild('projectEditModal') projectEditModal!: StaticBackDropModal;
+  @ViewChild('projectDelModal') projectDelModal!:StaticBackDropModal;
+
+  constructor(
+    private pageTitleService:PageTitleService,
+    private fb:FormBuilder,
+    private service:ProjectService,
+    private alertService:AlertService
+  ){}
+
+  ngOnInit(): void {
+      this.pageTitleService.setPageTitle('Project');
+      this.initFrm();
+      this.getAll();
+  }
+
+  initFrm(){
+    this.frm = this.fb.group({
+      id:[0],
+      name:[''],
+      description:[''],
+      tech:[],
+      sourceCodeUrl:[''],
+      demoVideoUrl:['']
+    })
+  }
+
+  getAll(){
+    this.service.findAll().subscribe(
+      (res:any)=>{
+        this.projects = res.content
+        console.log("data:",this.projects)
+      }
+    )
+  }
+
+  getById(id:number){
+    this.selectedId = id;
+    this.service.getById(id).subscribe(
+      (res:any)=>{
+        console.log("get by id:",res);
+      }
+    )
+  }
+
+  create(){
+    const frmValue = {...this.frm.value}
+    frmValue.tech = frmValue.tech
+    ?frmValue.tech
+       .split(',')
+       .map((s:string)=>s.trim())
+       .filter(Boolean)
+    : []
+    this.service.create(frmValue).subscribe(
+      (res:any)=>{
+        console.log(res);
+        this.getAll();
+        this.alertService.showSuccess();
+        this.projectModal.close();
+      }
+    )
+  }
+
+  setFrmValue(data: any) {
+  this.selectedId = data.id;
+  const patchData = {
+    ...data,
+    tech: Array.isArray(data.tech) ? data.tech.join(', ') : data.tech
+  };
+
+  this.frm.patchValue(patchData);
+}
+
+  update() {
+    const frmValue = { ...this.frm.value };
+
+    if (typeof frmValue.tech === 'string') {
+      frmValue.tech = frmValue.tech
+        .split(',')
+        .map((s: string) => s.trim())
+        .filter(Boolean);
+    } else if (Array.isArray(frmValue.tech)) {
+      frmValue.tech = frmValue.tech.map((s: string) => s.trim()).filter(Boolean);
+    } else {
+      frmValue.tech = [];
+    }
+
+    this.service.update(this.selectedId, frmValue).subscribe((res: any) => {
+      this.alertService.showSuccess();
+      this.projectEditModal.close();
+      console.log(this.selectedId, frmValue);
+      this.getAll();
+      this.initFrm();
+    });
+  }
+
+  
+  delete(){
+    this.service.delete(this.selectedId).subscribe(
+      (res:any)=>{
+        this.alertService.showSuccess();
+        this.projectDelModal.close();
+        this.getAll();
+        console.log(res);
+      }
+    )
+  }
+  
+}

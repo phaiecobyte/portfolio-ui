@@ -1,0 +1,19 @@
+<div class="container-fluid px-4">
+  <h2 class="mt-4 mb-3">Dashboard Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let card of dashboardCards">
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex align-items-center">
+          <div class="me-3">
+            <i [ngClass]="card.icon" class="fs-2 text-primary"></i>
+          </div>
+          <div>
+            <h6 class="card-title mb-0">{{ card.title }}</h6>
+            <p class="card-text fw-bold">{{ card.count }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

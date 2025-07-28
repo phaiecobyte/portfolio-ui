@@ -21,7 +21,7 @@ export class ProjectComponent implements OnInit {
   getAll() {
     this.service.findAll().subscribe(
       (res:any)=>{
-        this.projects = res;
+        this.projects = res.content;
         console.log("data", this.projects)
       }
     )

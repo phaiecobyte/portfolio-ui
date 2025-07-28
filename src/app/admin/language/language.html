@@ -1,0 +1,76 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Icon</th>
+                <th>Level</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of languages; track $index) {
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>lang-{{item.id}}</td>
+                <td>{{item.name}}</td>
+                @if (item.icon) {
+                    <td><span class="{{item.icon}}"></span></td>
+                }@else{
+                    <td><i class="fa-solid fa-language"></i></td>
+                }
+                <td>{{item.level}}%</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-success ms-1 me-1" data-bs-toggle="modal" data-bs-target="#langEditModal" (click)="setFrmValue(item)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#langDelModal" (click)="getById(item.id)">Del</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+
+<app-modal 
+    #langModal
+    [id]="'langModal'" 
+    title="Insert New Language"
+    (saveClicked)="create()"
+    >
+    <form [formGroup]="frm">
+        <app-input label="Language" formControlName="name" placeholder="Khmer"/>
+        <app-input label="Icon" formControlName="icon" placeholder="fi fi-kh"/>
+        <label for="">Level</label>
+        <nz-slider [nzTipFormatter]="formatter" formControlName="level" nzStep="5"/>
+    </form>
+</app-modal>
+
+<app-modal 
+    #langEditModal
+    [id]="'langEditModal'" 
+    title="Update Existing Language"
+    classbtnSave="btn btn-success"
+    txtBtnSave="Update"
+    (saveClicked)="update()"
+    >
+    <form [formGroup]="frm">
+        <app-input label="Language Name" formControlName="name" placeholder="Khmer"/>
+        <app-input label="Icon" formControlName="icon" placeholder="fi fi-kh"/>
+        <label for="">Level</label>
+        <nz-slider [nzTipFormatter]="formatter" formControlName="level" nzStep="5"/>
+    </form>
+</app-modal>
+
+
+<app-modal
+    #langDelModal
+    [id]="'langDelModal'"
+    title="Alert"
+    classbtnSave="btn btn-danger"
+    txtBtnSave="Yes"
+    (saveClicked)="delete()"
+    >
+    <p>Are you sure to delete?</p>
+</app-modal>

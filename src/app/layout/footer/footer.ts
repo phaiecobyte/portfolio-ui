@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './footer.css'
 })
 export class Footer {
+  @Input() theme ="";
   links=[
     {
       label:'nav.home',
