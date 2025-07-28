@@ -14,6 +14,13 @@ export class AlertService {
     });
   }
 
+    loginSuccess(): void {
+    this.notification.success('Success', 'Login Successfully!', {
+      nzPlacement: 'topRight', // ✅ topRight | topLeft | bottomLeft | bottomRight
+      nzDuration: 3000 // Optional: time in milliseconds
+    });
+  }
+
   showError(): void {
     this.notification.error('Error', 'Something went wrong!', {
       nzPlacement: 'topRight'

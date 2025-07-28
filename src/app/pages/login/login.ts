@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { InputComponent } from '../../components/input';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class Login {
     constructor(
         private fb:FormBuilder,
         private router:Router,
+        private alertService:AlertService
     ){}
 
     ngOnInit(): void {
@@ -34,7 +36,10 @@ export class Login {
             this.frm.markAllAsTouched();
             return;
         }else{
-           
+           if(this.frm.value.phoneNumber === 'phaiecobyte@gmail.com' && this.frm.value.password === 'ilovephiya'){
+            this.alertService.loginSuccess();
+            this.router.navigate(['/admin']);
+           }
         }
     }
 
