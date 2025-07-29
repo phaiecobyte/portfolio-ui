@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "projects":"Projects",
+    "examResult":"Exam Result",
     "about": "About",
     "contact": "Contact"
   },

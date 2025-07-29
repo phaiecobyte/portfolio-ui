@@ -27,6 +27,10 @@ export const routes: Routes = [
       {
         path:'projects',
         loadComponent:()=>import('./pages/project/project').then(c=>c.ProjectComponent)
+      },
+      {
+        path:'exam-result',
+        loadComponent:()=>import('./pages/exam-result/exam-result').then(c=>c.ExamResult)
       }
     ],
   },

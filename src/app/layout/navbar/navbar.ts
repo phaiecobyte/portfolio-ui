@@ -26,6 +26,11 @@ export class Navbar {
       routerLink:'projects'
     },
     {
+      label:'nav.examResult',
+      icon:'fa-solid fa-book',
+      routerLink:'exam-result'
+    },
+    {
       label:'nav.about',
       icon:'fa-regular fa-circle-user',
       routerLink:'about'

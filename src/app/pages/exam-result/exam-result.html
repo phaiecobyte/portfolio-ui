@@ -1,0 +1,63 @@
+<div class="container py-4">
+    <h1 class="text-center">Build Bright University</h1>
+    <p>នេះជាលទ្ធផលសិក្សារបស់ខ្ញុំនៅសាកលវិទ្យាល័យបៀលប្រាយពីឆ្នាំទី១ ដល់ បញ្ចប់</p>
+
+    <h5>Bachelor's Degree in Information and Technology (កម្មវិធីសិក្សាសម្រាប់និស្សិតជំនាន់ទី២២)</h5>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle text-center">
+      <ng-container *ngFor="let semester of semesters">
+        <thead>
+          <tr class="table-success">
+            <th colspan="9" class="text-start">{{ semester.term }}</th>
+          </tr>
+          <tr class="table-primary">
+            <th></th>
+            <th>No</th>
+            <th>Subject Name</th>
+            <th>Midterm</th>
+            <th>Final</th>
+            <th>Credit</th>
+            <th>Total</th>
+            <th><span title="Grade Point Value">GPV</span></th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subject of semester.subjects; let i = index" [ngClass]="{ 'table-light': i % 2 === 0 }">
+            <td></td>
+            <td>{{ subject.no }}</td>
+            <td class="text-start">{{ subject.name }}</td>
+            <td>{{ subject.midterm }}</td>
+            <td>{{ subject.final }}</td>
+            <td>{{ subject.credit }}</td>
+            <td>{{ subject.total }}</td>
+            <td>{{ subject.gpv }}</td>
+            <td>{{ subject.grade }}</td>
+          </tr>
+        </tbody>
+      </ng-container>
+
+      <!-- Totals -->
+      <tfoot>
+        <tr class="table-info fw-bold">
+          <td></td>
+          <td colspan="4" class="text-end">Total</td>
+          <td>{{ totalCredits }}</td>
+          <td></td>
+          <td>{{ totalGPV }}</td>
+          <td></td>
+        </tr>
+        <tr class="table-warning fw-bold">
+          <td></td>
+          <td colspan="6" class="text-end">Total GPA:</td>
+          <td colspan="2" class="text-danger text-center">{{ GPA }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <hr />
+  <footer class="text-center text-muted small">
+    <p>&copy; 2025 - BBU</p>
+  </footer>
+</div>
