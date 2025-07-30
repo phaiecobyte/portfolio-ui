@@ -42,6 +42,12 @@ export class StaticBackDropModal {
   
   onSaveClick=()=>this.saveClicked.emit();
 
+  open = () => {
+    const modalEl = document.getElementById(this.id);
+    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+    modalInstance?.show();
+  }
+  
   close = () => {
     const modalEl = document.getElementById(this.id);
     const modalInstance = bootstrap.Modal.getInstance(modalEl);

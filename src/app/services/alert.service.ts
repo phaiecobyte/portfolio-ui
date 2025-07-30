@@ -23,7 +23,7 @@ export class AlertService {
 
   showError(): void {
     this.notification.error('Error', 'Something went wrong!', {
-      nzPlacement: 'topRight'
+      nzPlacement: 'bottomRight'
     });
   }
 

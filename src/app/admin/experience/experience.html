@@ -1,1 +1,107 @@
-<p>experience works!</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Position</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of experiences; track $index) {
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>exp-{{item.id}}</td>
+                <td>{{item.position}}</td>
+                <td>{{item.startDate}}</td>
+                @if (!item.endDate) {
+                    <td>Present</td>
+                }@else {
+                    <td>{{item.endDate}}</td>
+                }
+                <td>{{item.description}}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-success ms-1 me-1" data-bs-toggle="modal" data-bs-target="#expEditModal" (click)="setFrmValue(item)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#expDelModal" (click)="getById(item.id)">Del</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<app-modal 
+    #expModal
+    [id]="'expModal'" 
+    title="Insert New Experience"
+    classbtnSave="btn btn-primary"
+    txtBtnSave="Save"
+    (saveClicked)="create()"
+    >
+    <form [formGroup]="frm">
+        <app-input label="Position" formControlName="position" placeholder="Web developer, Software Engineer, DevOp Engineer,...etc"/>
+        <app-input type="date" label="Start Date" formControlName="startDate"/>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="stillWorking" formControlName="stillWorking">
+            <label class="form-check-label" for="stillWorking">Still work with this position</label>
+        </div>
+
+        @if (!frm.get('stillWorking')?.value) {
+            <app-input type="date" label="End Date" formControlName="endDate"/>
+        }
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea formControlName="description" id="description" rows="4" class="form-control"></textarea>
+        </div>
+    </form>
+</app-modal>
+
+<app-modal 
+    #expEditModal
+    [id]="'expEditModal'" 
+    title="Update Existing Language"
+    classbtnSave="btn btn-success"
+    txtBtnSave="Update"
+    (saveClicked)="update()"
+    >
+    <form [formGroup]="frm">
+        <app-input label="Position" formControlName="position" placeholder="Web developer, Software Engineer, DevOp Engineer,...etc"/>
+        <app-input type="date" label="Start Date" formControlName="startDate"/>
+
+        <div class="mb-3 form-check">
+            @if (!frm.get('endDate')?.value) {
+                <input type="checkbox" checked class="form-check-input" id="stillWorking">
+            }@else {
+                <input type="checkbox" class="form-check-input" id="stillWorking">
+            }
+            <label class="form-check-label" for="stillWorking">Still work with this position</label>
+        </div>
+    
+        @if (!frm.get('stillWorking')?.value) {
+            <app-input type="date" label="End Date" formControlName="endDate"/>
+        }
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea formControlName="description" id="description" rows="4" class="form-control"></textarea>
+        </div>
+    </form>
+</app-modal>
+
+
+<app-modal
+    #expDelModal
+    [id]="'expDelModal'"
+    title="Alert"
+    classbtnSave="btn btn-danger"
+    txtBtnSave="Yes"
+    (saveClicked)="delete()"
+    >
+    <p>Are you sure to delete?</p>
+</app-modal>

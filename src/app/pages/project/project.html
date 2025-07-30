@@ -1,5 +1,17 @@
 <div class="container pt-3">
   <h2 class="mb-4 text-success fw-bold">My Projects</h2>
+
+  <!-- Loading Message and Spinner -->
+  <div *ngIf="isLoading" class="d-flex flex-column align-items-center my-5">
+    <div class="spinner-border text-success mb-3" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="text-center text-muted">
+      <p class="mb-0">Fetching data from server...</p>
+      <small>This may take up to 1 minute due to free server cold start. Thank you for your patience.</small>
+    </div>
+  </div>  
+
   <div class="row">
     @for (project of projects; track $index) {
       <div class="col-md-4 mb-4">

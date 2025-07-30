@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { StaticBackDropModal } from "../../components/static-backdrop-modal";
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProjectService } from '../../services/project.service';
 import { InputComponent } from "../../components/input";
 import { AlertService } from '../../services/alert.service';
-import { TextArea } from "../../components/text-area";
 import { SafeUrlPipe } from "../../pipe/safe-url-pipe";
 declare var bootstrap: any;
 
@@ -16,7 +15,7 @@ declare var bootstrap: any;
   templateUrl: './project.html',
   styleUrl: './project.css'
 })
-export class Project implements OnInit{
+export class Project implements OnInit, OnDestroy{
   frm!:FormGroup;
   projects:any;
   selectedId:number=0;
@@ -34,8 +33,11 @@ export class Project implements OnInit{
 
   ngOnInit(): void {
       this.pageTitleService.setPageTitle('Project');
-      this.initFrm();
       this.getAll();
+      this.initFrm();
+  }
+
+  ngOnDestroy(): void {
   }
 
   initFrm(){
@@ -86,14 +88,13 @@ export class Project implements OnInit{
   }
 
   setFrmValue(data: any) {
-  this.selectedId = data.id;
-  const patchData = {
-    ...data,
-    tech: Array.isArray(data.tech) ? data.tech.join(', ') : data.tech
-  };
-
-  this.frm.patchValue(patchData);
-}
+    this.selectedId = data.id;
+    const patchData = {
+      ...data,
+      tech: Array.isArray(data.tech) ? data.tech.join(', ') : data.tech
+    };
+    this.frm.patchValue(patchData);
+  }
 
   update() {
     const frmValue = { ...this.frm.value };
@@ -114,7 +115,7 @@ export class Project implements OnInit{
       this.projectEditModal.close();
       console.log(this.selectedId, frmValue);
       this.getAll();
-      this.initFrm();
+      this.frm.reset();
     });
   }
 

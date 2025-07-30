@@ -47,7 +47,7 @@
           {{item.name}}
         </li>
         <div class="progress mb-2">
-          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.percent"></div>
+          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
         </div>
       }
     </ul>
@@ -67,7 +67,12 @@
         <ul class="list-unstyled">
           <li class="mb-3">
             <span class="fw-bold">{{item.position}}</span> |
-            <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span><br>
+            <span class="text-muted">{{item.startDate | date }} - </span> 
+            @if (!item.endDate) { <span class="text-muted">Present</span> }
+            @else {
+              <span class="text-muted">{{item.endDate | date}}</span>
+            }
+            <br>
             {{item.description}}
           </li>
         </ul>
@@ -84,7 +89,7 @@
           </li>
         </ul>
         <div class="progress mb-2">
-          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.percent"></div>
+          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
         </div>
       }
     </div>
