@@ -24,6 +24,7 @@ export class ProjectComponent implements OnInit {
     this.isLoading = true;
     this.service.findAll().subscribe({
       next:(res:any)=>{
+        this.isLoading = false;
         this.projects = res.content;
         console.log("data", this.projects)
       },
