@@ -13,6 +13,12 @@ import { TranslateModule } from '@ngx-translate/core';
 export class Navbar {
   private languageService = inject(LanguageService);
   currentLang = this.languageService.getCurrentLang();
+  collapseNavbar() {
+    const el = document.getElementById('navbarSupportedContent');
+    if (el?.classList.contains('show')) {
+      el.classList.remove('show');
+    }
+  }
 
   navItems = [
     {
