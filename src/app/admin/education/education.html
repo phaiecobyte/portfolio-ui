@@ -1,1 +1,159 @@
-<p>education works!</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Degree</th>
+                <th>Major/Subject</th>
+                <th>School</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of eduList; track $index) {
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>edu-{{item.id}}</td>
+                <td>{{item.degree}}</td>
+                <td>{{item.major}}</td>
+                <td>{{item.school}}</td>
+                <td>{{item.startDate}}</td>
+                @if (!item.endDate) {
+                    <td>Present</td>
+                }@else {
+                    <td>{{item.endDate}}</td>
+                }
+                <td>{{item.address}}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-success ms-1 me-1" data-bs-toggle="modal" data-bs-target="#eduEditModal" (click)="setFrmValue(item)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eduDelModal" (click)="getById(item.id)">Del</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<app-modal 
+    #eduModal
+    [id]="'eduModal'" 
+    title="Insert New Education"
+    classbtnSave="btn btn-primary"
+    txtBtnSave="Save"
+    (saveClicked)="create()"
+    >
+    <form [formGroup]="frm">
+
+        <div class="row">
+            <div class="col">
+                <label for="degree" class="form-label">Degree</label>
+                <select id="degree" formControlName="degree" class="form-select">
+                    <option value="General Education">High School</option>
+                    <option value="Short Course">Short Course</option>
+                    <option value="Bachelor's Degree in">Bachelor</option>
+                    <option value="Master">Master</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Phd">PHD</option>
+                </select>
+            </div>
+            <div class="col">
+                <app-input label="Major" formControlName="major" placeholder="Computer Science, AI...etc"/>
+            </div>
+        </div>
+        <app-input label="School Name" formControlName="school" />
+        <div class="row">
+            <div class="col">
+                    <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="stillLearning" formControlName="stillLearning">
+                <label class="form-check-label" for="stillLearning">Still learning with this major</label>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <app-input type="date" label="Start Date" formControlName="startDate"/>
+            </div>
+            <div class="col">
+                @if (!frm.get('stillLearning')?.value) {
+                    <app-input type="date" label="End Date" formControlName="endDate"/>
+                }
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="address" class="form-label">Adress</label>
+            <textarea formControlName="address" id="address" rows="4" class="form-control" placeholder="City | Country"></textarea>
+        </div>
+    </form>
+</app-modal>
+
+<app-modal 
+    #eduEditModal
+    [id]="'eduEditModal'" 
+    title="Update Existing Education"
+    classbtnSave="btn btn-success"
+    txtBtnSave="Update"
+    (saveClicked)="update()"
+    >
+    <form [formGroup]="frm">
+
+        <div class="row">
+            <div class="col">
+                <label for="degree" class="form-label">Degree</label>
+                  <select id="degree" formControlName="degree" class="form-select">
+                    <option value="General Education">High School</option>
+                    <option value="Short Course">Short Course</option>
+                    <option value="Bachelor's Degree in">Bachelor</option>
+                    <option value="Master">Master</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Phd">PHD</option>
+                </select>
+            </div>
+            <div class="col">
+                <app-input label="Major" formControlName="major" placeholder="Computer Science, AI...etc"/>
+            </div>
+        </div>
+        <app-input label="School Name" formControlName="school" />
+        <div class="row">
+            <div class="col">
+                    <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="stillLearning" formControlName="stillLearning">
+                <label class="form-check-label" for="stillLearning">Still learning with this major</label>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <app-input type="date" label="Start Date" formControlName="startDate"/>
+            </div>
+            <div class="col">
+            
+                @if (!frm.get('stillLearning')?.value) {
+                    <app-input type="date" label="End Date" formControlName="endDate"/>
+                }
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="address" class="form-label">Adress</label>
+            <textarea formControlName="address" id="address" rows="4" class="form-control"></textarea>
+        </div>
+    </form>
+</app-modal>
+
+
+<app-modal
+    #eduDelModal
+    [id]="'eduDelModal'"
+    title="Alert"
+    classbtnSave="btn btn-danger"
+    txtBtnSave="Yes"
+    (saveClicked)="delete()"
+    >
+    <p>Are you sure to delete?</p>
+</app-modal>

@@ -86,7 +86,7 @@ export class Experience implements OnInit{
         this.getAll();
         this.alertService.showSuccess();
         this.expEditModal.close();
-        this.initFrm();
+        this.frm.reset();
       }
     )
   }

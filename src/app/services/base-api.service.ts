@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { env } from '../../environment/env.prod';
+import { env } from '../../environment/env.dev';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -13,6 +13,10 @@ export abstract class BaseApiService<T> {
     protected http:HttpClient,
     protected endpoint:string
   ){}
+
+  count():Observable<number>{
+    return this.http.get<number>(`${this.baseUrl}${this.endpoint}/count`)
+  }
 
   findAll(page:number=0,size:number=10,sort:string='id,desc'):Observable<T>{
     const params:any ={page,size}

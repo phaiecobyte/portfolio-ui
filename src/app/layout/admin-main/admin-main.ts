@@ -35,6 +35,11 @@ export class AdminMain{
       icon: 'fa-solid fa-home', 
       routeLink: '/admin/dashboard'
     },
+    {
+      label:'Profile',
+      icon:'fa-solid fa-user',
+      routeLink:'/admin/profile'
+    },
     { 
       label: 'Project', 
       icon: 'fa-solid fa-code', 

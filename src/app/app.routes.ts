@@ -47,6 +47,10 @@ export const routes: Routes = [
         loadComponent:()=>import('./admin/dashboard/dashboard').then(c=>c.Dashboard)
       },
       {
+        path:'profile',
+        loadComponent:()=>import('./admin/profile/profile').then(c=>c.Profile)
+      },
+      {
         path:'project',
         loadComponent:()=>import('./admin/project/project').then(c=>c.Project)
       },

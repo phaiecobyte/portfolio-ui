@@ -3,6 +3,7 @@ import { SkillService } from '../../services/skill.service';
 import { LangService } from '../../services/lang.service';
 import { ExperienceService } from '../../services/experience.service';
 import { CommonModule } from '@angular/common';
+import { EduService } from '../../services/edu.service';
 
 @Component({
   selector: 'app-about',
@@ -14,16 +15,19 @@ export class About implements OnInit{
   skills:any;
   languages:any;
   experiences:any;
+  educations:any;
 
   constructor(
     private skillService:SkillService,
     private langService:LangService,
-    private expService:ExperienceService
+    private expService:ExperienceService,
+    private eduService:EduService
   ){}
   ngOnInit(): void {
     this.getAllSkills();  
     this.getAllLang();
     this.getAllExp();
+    this.getAllEdu();
   }
 
   getAllSkills(){
@@ -51,6 +55,14 @@ export class About implements OnInit{
     )
   }
 
+  getAllEdu(){
+    this.eduService.findAll().subscribe(
+      (res:any)=>{
+        this.educations = res.content;
+      }
+    )
+  }
+
   contacts = [
     {name:'phaiecobyte@gmail.com', icon:'fa-regular fa-envelope'},
     {name:'phaiecobyte', icon:'fa-brands fa-github', link:'https://github.com/phaiecobyte'},
@@ -58,10 +70,10 @@ export class About implements OnInit{
     {name:'phaiecobyte', icon:'fa-brands fa-linkedin', link:''},
     {name:'phaiecobyte', icon:'fa-brands fa-tiktok', link:''},
   ]
-  education = [
-    {degree:`Bachelor's degree in`,mejor:'Information and Technology', startDate:'2022', endDate:'2025', schoolName:'Build Bright University', address:'Phnom Penh | Cambodia'},
-    {degree:`General Education`,mejor:'', startDate:'2019', endDate:'2022', schoolName:'Preah Soramrith Buddhist High School', address:'Phnom Penh | Cambodia'}
-  ]
+  // education = [
+  //   {degree:`Bachelor's degree in`,mejor:'Information and Technology', startDate:'2022', endDate:'2025', schoolName:'Build Bright University', address:'Phnom Penh | Cambodia'},
+  //   {degree:`General Education`,mejor:'', startDate:'2019', endDate:'2022', schoolName:'Preah Soramrith Buddhist High School', address:'Phnom Penh | Cambodia'}
+  // ]
   // skills = [
   //   { name: 'Angular', icon: 'fa-brands fa-angular', percent: 90 },
   //   { name: 'TypeScript', icon: 'fa-solid fa-code', percent: 85 },

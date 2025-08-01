@@ -29,11 +29,11 @@
 
     <h5 class="fw-bold text-gradient">Education</h5>
     <ul class="list-unstyled mb-5">
-      @for (item of education; track $index) {
+      @for (item of educations; track $index) {
         <li class="mb-3">
-          <span class="fw-bold">{{item.degree}} {{item.mejor}}</span><br>
-          <span class="text-muted">{{item.schoolName}}</span> |
-          <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span><br>
+          <span class="fw-bold">{{item.degree}} {{item.major}}</span><br>
+          <span class="text-muted">{{item.schoolName}}</span>
+          <span class="text-muted">{{item.startDate | date}} - {{item.endDate | date}}</span><br>
           <span class="text-muted">{{item.address}}</span>
         </li>
       }
