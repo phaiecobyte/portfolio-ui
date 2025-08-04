@@ -1,16 +1,16 @@
 <section class="hero">
     <div class="hero-content">
       <div class="text">
-        <h1>{{'home.title' | translate}}</h1>
-        <h2>{{'home.subtitle' | translate}}</h2>
-        <p> {{'home.description' | translate}}</p>
+        <h1>Hello, I'm {{myProfile.firstName}}</h1>
+        <h2>{{myProfile.position}}</h2>
+        <p> {{myProfile.bio}}</p>
         <div class="cta-buttons">
           <a href="projects" class="btn primary">{{'See Projects' | translate}}</a>
           <a href="contact" class="btn secondary">{{'Contact Me' | translate}}</a>
         </div>
       </div>
       <div class="image">
-        <img src="phai.jpg" alt="Phai Profile" />
+        <img [src]="profileImage" alt="Phai Profile" />
       </div>
     </div>
   </section>

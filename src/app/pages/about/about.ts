@@ -4,6 +4,7 @@ import { LangService } from '../../services/lang.service';
 import { ExperienceService } from '../../services/experience.service';
 import { CommonModule } from '@angular/common';
 import { EduService } from '../../services/edu.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-about',
@@ -16,18 +17,34 @@ export class About implements OnInit{
   languages:any;
   experiences:any;
   educations:any;
+  myProfiles:any;
+  profileImage:any;
 
   constructor(
     private skillService:SkillService,
     private langService:LangService,
     private expService:ExperienceService,
-    private eduService:EduService
+    private eduService:EduService,
+    private profileService:ProfileService
   ){}
   ngOnInit(): void {
     this.getAllSkills();  
     this.getAllLang();
     this.getAllExp();
     this.getAllEdu();
+    this.getProfile();
+  }
+
+  getProfile(){
+    this.profileService.getById(1).subscribe(
+      (res:any)=>{
+        this.profileService.getProfileImage(1).subscribe((imageBlob:Blob)=>{
+          this.profileImage = URL.createObjectURL(imageBlob);
+        })
+        this.myProfiles = res;
+        console.log("my profiledata",this.myProfiles);
+      }
+    )
   }
 
   getAllSkills(){
