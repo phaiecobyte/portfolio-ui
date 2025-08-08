@@ -7,11 +7,12 @@ import { ProjectService } from '../../services/project.service';
 import { InputComponent } from "../../components/input";
 import { AlertService } from '../../services/alert.service';
 import { SafeUrlPipe } from "../../pipe/safe-url-pipe";
+import { SpinnerComponent } from "../../components/spinner";
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-project',
-  imports: [StaticBackDropModal, NzBreadCrumbModule, ReactiveFormsModule, InputComponent, SafeUrlPipe],
+  imports: [StaticBackDropModal, NzBreadCrumbModule, ReactiveFormsModule, InputComponent, SafeUrlPipe, SpinnerComponent],
   templateUrl: './project.html',
   styleUrl: './project.css'
 })
@@ -19,6 +20,7 @@ export class Project implements OnInit, OnDestroy{
   frm!:FormGroup;
   projects:any;
   selectedId:number=0;
+  isLoading:boolean=false;
 
   @ViewChild('projectModal') projectModal!: StaticBackDropModal;
   @ViewChild('projectEditModal') projectEditModal!: StaticBackDropModal;
@@ -52,8 +54,10 @@ export class Project implements OnInit, OnDestroy{
   }
 
   getAll(){
+    this.isLoading = true;
     this.service.findAll().subscribe(
       (res:any)=>{
+        this.isLoading = false;
         this.projects = res.content
         console.log("data:",this.projects)
       }
@@ -70,6 +74,7 @@ export class Project implements OnInit, OnDestroy{
   }
 
   create(){
+    this.isLoading=true;
     const frmValue = {...this.frm.value}
     frmValue.tech = frmValue.tech
     ?frmValue.tech
@@ -77,14 +82,15 @@ export class Project implements OnInit, OnDestroy{
        .map((s:string)=>s.trim())
        .filter(Boolean)
     : []
-    this.service.create(frmValue).subscribe(
-      (res:any)=>{
-        console.log(res);
+    this.service.create(frmValue).subscribe({
+      next:()=>{
+        this.isLoading = false;
         this.getAll();
         this.alertService.showSuccess();
         this.projectModal.close();
+        this.frm.reset();
       }
-    )
+    })
   }
 
   setFrmValue(data: any) {

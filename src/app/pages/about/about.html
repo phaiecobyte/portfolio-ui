@@ -12,35 +12,35 @@
   <hr>
   <div class="row mb-4">
 
-  <!-- start left col -->
-  <div class="col-12 col-md-3 border pt-3 px-3">
-    <h5 class="fw-bold text-gradient">Contact</h5>
-    <ul class="list-unstyled mb-5">
-      @for (item of contacts; track $index) {
+    <!-- start left col -->
+    <div class="col-12 col-md-3 border pt-3 px-3">
+      <h5 class="fw-bold text-gradient">Contact</h5>
+      <ul class="list-unstyled mb-5">
+        @for (item of contacts; track $index) {
         <li class="mb-3">
           <a href="{{item.link}}" class="text-decoration-none text-dark">
             <i class="{{item.icon}} me-3"></i>
             {{item.name}}
           </a>
         </li>
-      }
-    </ul>
+        }
+      </ul>
 
-    <h5 class="fw-bold text-gradient">Education</h5>
-    <ul class="list-unstyled mb-5">
-      @for (item of educations; track $index) {
+      <h5 class="fw-bold text-gradient">Education</h5>
+      <ul class="list-unstyled mb-5">
+        @for (item of educations; track $index) {
         <li class="mb-3">
           <span class="fw-bold">{{item.degree}} {{item.major}}</span><br>
           <span class="text-muted">{{item.schoolName}}</span>
           <span class="text-muted">{{item.startDate | date}} - {{item.endDate | date}}</span><br>
           <span class="text-muted">{{item.address}}</span>
         </li>
-      }
-    </ul>
+        }
+      </ul>
 
-    <h5 class="fw-bold text-gradient">Language</h5>
-    <ul class="list-unstyled mb-5">
-      @for (item of languages; track $index) {
+      <h5 class="fw-bold text-gradient">Language</h5>
+      <ul class="list-unstyled mb-5">
+        @for (item of languages; track $index) {
         <li>
           <span class="{{item.icon}}"></span>
           {{item.name}}
@@ -48,39 +48,39 @@
         <div class="progress mb-2">
           <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
         </div>
-      }
-    </ul>
+        }
+      </ul>
 
-    <h5 class="fw-bold text-gradient">Reference</h5>
-    <ul class="list-unstyled mb-5">
-      <!-- Add reference items here -->
-    </ul>
-  </div>
-  <!-- end left col -->
+      <h5 class="fw-bold text-gradient">Reference</h5>
+      <ul class="list-unstyled mb-5">
+        <!-- Add reference items here -->
+      </ul>
+    </div>
+    <!-- end left col -->
 
-  <!-- start right column -->
-  <div class="col-12 col-md-9 border pt-3 px-3">
-    <div class="ms-md-5 mb-5">
-      <h5 class="fw-bold text-gradient">Experiences</h5>
-      @for (item of experiences; track $index) {
+    <!-- start right column -->
+    <div class="col-12 col-md-9 border pt-3 px-3">
+      <div class="ms-md-5 mb-5">
+        <h5 class="fw-bold text-gradient">Experiences</h5>
+        @for (item of experiences; track $index) {
         <ul class="list-unstyled">
           <li class="mb-3">
             <span class="fw-bold">{{item.position}}</span> |
-            <span class="text-muted">{{item.startDate | date }} - </span> 
+            <span class="text-muted">{{item.startDate | date }} - </span>
             @if (!item.endDate) { <span class="text-muted">Present</span> }
             @else {
-              <span class="text-muted">{{item.endDate | date}}</span>
+            <span class="text-muted">{{item.endDate | date}}</span>
             }
             <br>
             {{item.description}}
           </li>
         </ul>
-      }
-    </div>
+        }
+      </div>
 
-    <div class="ms-md-5">
-      <h5 class="fw-bold text-gradient">Skills</h5>
-      @for (item of skills; track $index) {
+      <div class="ms-md-5">
+        <h5 class="fw-bold text-gradient">Skills</h5>
+        @for (item of skills; track $index) {
         <ul class="list-unstyled">
           <li class="mb-3">
             <i class="{{item.icon}} me-3"></i>
@@ -90,13 +90,10 @@
         <div class="progress mb-2">
           <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
         </div>
-      }
+        }
+      </div>
     </div>
+    <!-- end right column -->
+
   </div>
-  <!-- end right column -->
-
 </div>
-
-  
-</div>
-

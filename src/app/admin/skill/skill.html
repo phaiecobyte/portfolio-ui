@@ -32,13 +32,18 @@
     </table>
 </div>
 
+@if (isLoading) {
+    <app-spinner/>
+}
 
 <app-modal 
     #skillModal
     [id]="'skillModal'" 
+    [isLoading]="isLoading"
     title="Insert New Skill"
     (saveClicked)="create()"
     >
+    
     <form [formGroup]="frm">
         <app-input label="Skill Name" formControlName="name" placeholder="Angular"/>
         <app-input label="Icon" formControlName="icon" placeholder="fa-brands fa-angular"/>
@@ -50,6 +55,7 @@
 <app-modal 
     #skillEditModal
     [id]="'skillEditModal'" 
+    [isLoading]="isLoading"
     title="Update Existing Skill"
     classbtnSave="btn btn-success"
     txtBtnSave="Update"
@@ -66,6 +72,7 @@
 
 <app-modal
     #skillDelModal
+    [isLoading]="isLoading"
     [id]="'skillDelModal'"
     title="Alert"
     classbtnSave="btn btn-danger"

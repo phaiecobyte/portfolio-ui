@@ -21,6 +21,7 @@ export class Profile implements OnInit {
   profile: any;
   isEditMode = false;
   profileForm!: FormGroup;
+  isLoading:boolean=false;
 
   selectedFile!: File;
   previewUrl: string | ArrayBuffer | null = null;

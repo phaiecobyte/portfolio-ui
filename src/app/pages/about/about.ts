@@ -19,6 +19,7 @@ export class About implements OnInit{
   educations:any;
   myProfiles:any;
   profileImage:any;
+  isLoading:boolean=true;
 
   constructor(
     private skillService:SkillService,
@@ -42,6 +43,7 @@ export class About implements OnInit{
           this.profileImage = URL.createObjectURL(imageBlob);
         })
         this.myProfiles = res;
+        this.isLoading = false;
         console.log("my profiledata",this.myProfiles);
       }
     )

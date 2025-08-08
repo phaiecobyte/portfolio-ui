@@ -1,5 +1,10 @@
 
   <div class="row">
+
+    @if (isLoading) {
+      <app-spinner/>
+    }
+
     @for (project of projects; track $index) {
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
@@ -38,6 +43,7 @@
 
 <app-modal
     #projectModal
+    [isLoading]="isLoading"
     [id]="'projectModal'"
     title="Insert New Project"
     (saveClicked)="create()"
@@ -56,6 +62,7 @@
 
 <app-modal
     #projectEditModal
+    [isLoading]="isLoading"
     [id]="'projectEditModal'"
     title="Update Project proj-{{frm.value.id}}"
     (saveClicked)="update()"
@@ -75,6 +82,7 @@
 
 
 <app-modal
+    [isLoading]="isLoading"
     #projectDelModal
     [id]="'projectDelModal'"
     title="Alert"

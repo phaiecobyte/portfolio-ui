@@ -6,11 +6,11 @@ import { AlertService } from '../../services/alert.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from "../../components/input";
 import { NzSliderComponent } from 'ng-zorro-antd/slider';
-import { NzFormLabelComponent } from 'ng-zorro-antd/form';
+import { SpinnerComponent } from '../../components/spinner';
 
 @Component({
   selector: 'app-skill',
-  imports: [StaticBackDropModal, InputComponent, ReactiveFormsModule,NzSliderComponent],
+  imports: [StaticBackDropModal, InputComponent, ReactiveFormsModule,NzSliderComponent,SpinnerComponent],
   templateUrl: './skill.html',
   styleUrl: './skill.css'
 })
@@ -18,6 +18,7 @@ export class Skill implements OnInit{
   skills:any;
   frm!:FormGroup;
   selectedId:number=0;
+  isLoading:boolean=false;
 
   @ViewChild('skillModal') skillModal!:StaticBackDropModal;
   @ViewChild('skillEditModal') skillEditModal!:StaticBackDropModal;
@@ -50,6 +51,7 @@ export class Skill implements OnInit{
       next:(res:any)=>{
         this.skills = res.content;
         console.log("data:",this.skills);
+        this.isLoading = false;
       }
     })
   }
@@ -64,14 +66,20 @@ export class Skill implements OnInit{
   }
 
   create(){
-   this.service.create(this.frm.value).subscribe(
-    (res:any)=>{
+   if(this.frm.invalid) return;
+   this.isLoading = true;
+   this.service.create(this.frm.value).subscribe({
+    next:()=>{
+      this.isLoading = false;
       this.alertService.showSuccess();
       this.skillModal.close();
-      this.getAll();
-      console.log("form value",this.frm.value);
+      this.frm.reset();
+    },
+    error:()=>{
+      this.alertService.showError();
+      this.isLoading = false;
     }
-   ) 
+   }) 
   }
 
   setFrmValue(data:any){
@@ -81,6 +89,8 @@ export class Skill implements OnInit{
   }
 
   update(){
+    if(this.frm.invalid) return;
+    this.isLoading = true;
     this.frm.value.id = 0;
     this.service.update(this.selectedId,this.frm.value).subscribe(
       (res:any)=>{
@@ -88,13 +98,16 @@ export class Skill implements OnInit{
         this.alertService.showSuccess();
         this.initFrm();
         this.skillEditModal.close();
+        this.isLoading=false;
       }
     )
   }
 
   delete(){
+    this.isLoading = true;
     this.service.delete(this.selectedId).subscribe(
       (res:any)=>{
+        this.isLoading = false;
         this.getAll();
         this.alertService.showSuccess();
         this.skillDelModal.close();
