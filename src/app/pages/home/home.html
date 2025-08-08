@@ -5,8 +5,8 @@
         <h2>{{myProfile.position}}</h2>
         <p> {{myProfile.bio}}</p>
         <div class="cta-buttons">
-          <a href="projects" class="btn primary">{{'See Projects' | translate}}</a>
-          <a href="contact" class="btn secondary">{{'Contact Me' | translate}}</a>
+          <a (click)="goToProject()" class="btn primary">{{'See Projects' | translate}}</a>
+          <a (click)="gotToContact()" class="btn secondary">{{'Contact Me' | translate}}</a>
         </div>
       </div>
       <div class="image">
