@@ -4,9 +4,9 @@
       <img [src]="profileImage" alt="Phai Profile" class="about-photo rounded-circle shadow-lg" />
     </div>
     <div class="col-md-9">
-      <h2 class="fw-bold mb-1 text-gradient">{{myProfiles.firstName}} {{myProfiles.lastName}}</h2>
-      <h4 class="text-primary mb-3">{{myProfiles.position}}</h4>
-      <p class="lead">🚀 {{myProfiles.bio}}</p>
+      <h2 class="fw-bold mb-1 text-gradient">{{myProfile.firstName}} {{myProfile.lastName}}</h2>
+      <h4 class="text-primary mb-3">{{myProfile.position}}</h4>
+      <p class="lead">🚀 {{myProfile.bio}}</p>
     </div>
   </div>
   <hr>
@@ -32,7 +32,7 @@
         <li class="mb-3">
           <span class="fw-bold">{{item.degree}} {{item.major}}</span><br>
           <span class="text-muted">{{item.schoolName}}</span>
-          <span class="text-muted">{{item.startDate | date}} - {{item.endDate | date}}</span><br>
+          <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span><br>
           <span class="text-muted">{{item.address}}</span>
         </li>
         }
@@ -66,11 +66,13 @@
         <ul class="list-unstyled">
           <li class="mb-3">
             <span class="fw-bold">{{item.position}}</span> |
-            <span class="text-muted">{{item.startDate | date }} - </span>
+            <span class="text-muted">{{item.startDate}} - </span>
             @if (!item.endDate) { <span class="text-muted">Present</span> }
             @else {
-            <span class="text-muted">{{item.endDate | date}}</span>
+            <span class="text-muted">{{item.endDate}}</span>
             }
+            <br>
+            MIS Company | Phnom Penh 
             <br>
             {{item.description}}
           </li>

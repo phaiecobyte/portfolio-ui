@@ -36,7 +36,7 @@ export class Login {
             this.frm.markAllAsTouched();
             return;
         }else{
-           if(this.frm.value.phoneNumber === 'phaiecobyte@gmail.com' && this.frm.value.password === 'ilovephiya'){
+           if(this.frm.value.phoneNumber === 'phaiecobyte@gmail.com' && this.frm.value.password === 'Ihavecrushedonphiyasinceisawherfirsttimein2024'){
             this.alertService.loginSuccess();
             this.router.navigate(['/admin']);
            }
@@ -46,4 +46,5 @@ export class Login {
   onBackHome(){
     this.router.navigate(['/home'])
   }
+  
 }

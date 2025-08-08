@@ -10,19 +10,17 @@ import { ProfileService } from '../../services/profile.service';
   styleUrl: './home.css'
 })
 export class Home implements OnInit{
-  profileImage:any;
-  myProfile:any;
+  profileImage:string='./phaiecobyte.svg';
+  myProfile={
+    "firstName":"Phai",
+    "position":"Web Fullstack Developer",
+    "bio":"I'm a recent graduate from Build Bright University and currently interning as a Full-Stack Web Developer using ASP.NET MVC. I'm passionate about building innovative and practical solutions, with a strong interest in contributing to open-source projects. 🔭 Currently focused on backend development using .NET technologies 🌱 Learning Spring Boot and Microservice Architecture 💡 Constantly exploring new technologies, clean code practices, and scalable system design 🤝 Enjoy sharing knowledge and collaborating with the developer community"
+  }
   constructor(
     private myProfileService:ProfileService,
   ){}
   ngOnInit(): void {
-    this.myProfileService.getById(1).subscribe(
-      (res:any)=>{
-        this.myProfileService.getProfileImage(1).subscribe((image:Blob)=>{
-          this.profileImage = URL.createObjectURL(image);
-        })
-        this.myProfile = res
-      })
+    
   }   
   
 }
