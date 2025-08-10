@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2>Blog</h2>
+  @for (post of blogPosts; track $index) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{ post.content | slice:0:100 }}...</p>
+      <a [routerLink]="['/admin/blog', post.id]" class="btn btn-primary btn-sm">Read More</a>
+    </div>
+  </div>
+  }
+</div>
+
+<app-modal 
+    #blogModal
+    classModal="modal-dialog modal-dialog-centered modal-xl"
+    [id]="'blogModal'" 
+    title="Create New Post"
+    >
+    <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <!-- Title -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="title" nzRequired>Title</nz-form-label>
+      <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please input a title!">
+        <input nz-input formControlName="title" id="title" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Content (Rich Text) -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="content" nzRequired>Content</nz-form-label>
+      <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please enter content!">
+        <quill-editor formControlName="content" [style]="{height: '300px'}"></quill-editor>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</app-modal>

@@ -13,7 +13,13 @@ import { AlertService } from '../../services/alert.service';
 export class ProjectComponent implements OnInit {
   isLoading:boolean=true;
   projects: Project[] = [];
-
+  features:Array<string> = [
+    "Home, About, Blog, Contact, Exam Results, and Project pages.",
+    "Admin dashboard for managing blog posts, profile, skills, and more.",
+    "Secure login for admin access.",
+    "Reusable UI components and custom pipes.",
+    "Mobile-friendly, responsive design with Bootstrap."
+  ]
   constructor(private service: ProjectService,private alertService:AlertService) {}
 
   ngOnInit(): void {
@@ -34,4 +40,6 @@ export class ProjectComponent implements OnInit {
       }
     });
   }
+
+    
 }

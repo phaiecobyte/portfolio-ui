@@ -4,7 +4,8 @@
     "projects":"គំរោង",
     "examResult":"លទ្ធផលសិក្សា",
     "about": "អំពី",
-    "contact": "ទំនាក់ទំនង"
+    "contact": "ទំនាក់ទំនង",
+    "knowledge":"ចំណេះដឹង"
   },
   "language": {
     "en": "អង់គ្លេស",
@@ -26,6 +27,7 @@
   "Send Message":"ផ្ញើសារ",
   "You're welcome to reach out for collaborations":"សូមស្វាគមន៍ក្នុងការទាក់ទងសម្រាប់កិច្ចសហប្រតិបត្តិការផ្សេងៗ",
   "See Projects":"មើលគំរោង",
-  "Contact Me":"ទំនាក់ទំនងខ្ញុំ"
+  "Contact Me":"ទំនាក់ទំនងខ្ញុំ",
+  "General Knowledge":"ចំណេះដឹងទូទៅ"
 }
 

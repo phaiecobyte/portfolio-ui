@@ -32,6 +32,11 @@ export class Navbar {
       routerLink:'projects'
     },
     {
+      label:'nav.knowledge',
+      icon:'fa-solid fa-brain',
+      routerLink:'blog'
+    },
+    {
       label:'nav.examResult',
       icon:'fa-solid fa-book',
       routerLink:'exam-result'

@@ -1,0 +1,17 @@
+<div class="container my-5">
+  <h1 class="mb-4 text-center fw-bold">{{'General Knowledge' | translate}}</h1>
+  <div class="row g-4">
+    <div *ngFor="let post of posts" class="col-md-4">
+      <div class="card h-100 shadow-sm border-0 blog-card" (click)="openPost(post.id)" style="cursor:pointer;">
+        <img [src]="post.image" class="card-img-top" alt="{{ post.title }}">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">{{ post.title }}</h5>
+          <p class="card-text text-muted">{{ post.summary }}</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <a (click)="openPost(post.id)" class="btn btn-outline-primary w-100">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

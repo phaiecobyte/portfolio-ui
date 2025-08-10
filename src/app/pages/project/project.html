@@ -2,7 +2,8 @@
   <h2 class="mb-4 text-success fw-bold">My Projects</h2>
 
   <!-- Loading Message and Spinner -->
-  <div *ngIf="isLoading" class="d-flex flex-column align-items-center my-5">
+  @if (isLoading) {
+  <div class="d-flex flex-column align-items-center my-5">
     <div class="spinner-border text-success mb-3" role="status" style="width: 3rem; height: 3rem;">
       <span class="visually-hidden">Loading...</span>
     </div>
@@ -11,6 +12,7 @@
       <small>This may take up to 1 minute due to free server cold start. Thank you for your patience.</small>
     </div>
   </div>  
+  }
 
   <div class="row">
     @for (project of projects; track $index) {
@@ -19,6 +21,10 @@
           <div class="card-body">
             <h5 class="card-title">{{project.name}}</h5>
             <p class="card-text">{{project.description}}</p>
+            <p class="card-text"><b>Feature</b></p>
+            @for (item of features; track $index) {
+              <li>{{item}}</li>
+            }
             <div class="mb-2">
               @for (tech of project.tech; track $index) {
                 <span class="badge bg-secondary me-1">{{tech}}</span>

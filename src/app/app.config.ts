@@ -13,6 +13,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { KeycloakService, provideKeycloak } from 'keycloak-angular';
+import { QuillModule } from 'ngx-quill';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

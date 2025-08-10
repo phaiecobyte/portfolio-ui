@@ -10,7 +10,7 @@ declare var bootstrap:any;
   imports: [CommonModule, SpinnerComponent],
   template: `
     <div #modalElement class="modal fade" [id]="id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class={{classModal}}>
     <div class="modal-content position-relative">
 
       <!-- Spinner Overlay -->
@@ -61,6 +61,7 @@ declare var bootstrap:any;
 
 })
 export class StaticBackDropModal {
+  @Input() classModal = "modal-dialog modal-dialog-centered modal-lg"
   @Input() isLoading = false;
   @Input() id="";
   @Input() txtBtnOpenModal = "Open Modal";

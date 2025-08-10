@@ -13,6 +13,14 @@ export const routes: Routes = [
         pathMatch:'full'
       },
       {
+        path:'blog',
+        loadComponent:()=>import('./pages/blog/blog').then(c=>c.Blog)
+      },
+      {
+        path:'blog-detail/:id',
+        loadComponent:()=>import('./pages/blog-detail/blog-detail').then(c=>c.BlogDetail)
+      },
+      {
         path: 'home',
         loadComponent: () => import('./pages/home/home').then((c) => c.Home),
       },
@@ -41,6 +49,14 @@ export const routes: Routes = [
       {
         path:'',
         loadComponent:()=>import('./admin/dashboard/dashboard').then(c=>c.Dashboard)
+      },
+      {
+        path:'blog',
+        loadComponent:()=>import('./admin/blog/blog').then(c=>c.Blog)
+      },
+      {
+        path:'blog/:id',
+        loadComponent:()=>import('./admin/blog-detail/blog-detail').then(c=>c.BlogDetail)
       },
       {
         path:'dashboard',

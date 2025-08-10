@@ -6,6 +6,7 @@ import { NzContentComponent, NzFooterComponent, NzHeaderComponent, NzLayoutCompo
 import { NzBreadCrumbComponent, NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { BtnTriggerComponent } from "../../components/btn-modal-trigger";
+import { icons } from '../../icons-provider';
 
 @Component({
   selector: 'app-admin-main',
@@ -35,40 +36,51 @@ export class AdminMain{
       icon: 'fa-solid fa-home', 
       routeLink: '/admin/dashboard'
     },
-    {
-      label:'Profile',
-      icon:'fa-solid fa-user',
-      routeLink:'/admin/profile'
+    { 
+      label: 'Blog', 
+      icon: 'fa-solid fa-book-atlas', 
+      routeLink: '/admin/blog'
     },
     { 
       label: 'Project', 
       icon: 'fa-solid fa-code', 
       routeLink: '/admin/project' 
     },
-    { 
-      label: 'Skill', 
-      icon: 'fa-solid fa-brain', 
-      routeLink: '/admin/skill' 
-    },
     {
-      label: 'Education',
-      icon:'fa-solid fa-school',
-      routeLink:'/admin/education'
-    },
-    { 
-      label: 'Language', 
-      icon: 'fa-solid fa-language', 
-      routeLink: '/admin/language' 
-    },
-    {
-      label:'Experience',
-      icon:'fa-solid fa-briefcase',
-      routeLink:'/admin/experience'
-    },
-    {
-      label:'Reference',
-      icon:'fa-solid fa-handshake',
-      routeLink:'/admin/reference'
+      label:'Profile',
+      icon:'fa-solid fa-user',
+      children:[
+        {
+          label:'Profile Info',
+          icon:'fa-solid fa-user',
+          routeLink:'/admin/profile'
+        },
+        { 
+          label: 'Skill', 
+          icon: 'fa-solid fa-brain', 
+          routeLink: '/admin/skill' 
+        },
+        {
+          label: 'Education',
+          icon:'fa-solid fa-school',
+          routeLink:'/admin/education'
+        },
+        { 
+          label: 'Language', 
+          icon: 'fa-solid fa-language', 
+          routeLink: '/admin/language' 
+        },
+        {
+          label:'Experience',
+          icon:'fa-solid fa-briefcase',
+          routeLink:'/admin/experience'
+        },
+        {
+          label:'Reference',
+          icon:'fa-solid fa-handshake',
+          routeLink:'/admin/reference'
+        }
+      ]
     },
     {
       label:'Back Home',

@@ -1,0 +1,30 @@
+<div class="container my-5" *ngIf="post">
+  <div class="text-center mb-4">
+    <h1 class="fw-bold">{{ post.title }}</h1>
+    <p class="text-muted">Published on August 9, 2025 by <b>phaiecobyte</b></p>
+  </div>
+
+  <img [src]="post.image" class="img-fluid rounded mb-4 shadow-sm" alt="{{ post.title }}">
+
+  <article class="mb-4">
+    <p class="lead">
+      Being a strong man is not only about muscles; it’s about qualities that shape his character and inspire others.
+    </p>
+
+    <ul class="list-group list-group-flush mb-4 shadow-sm">
+      <li class="list-group-item"><strong>Discipline:</strong> He keeps his commitments and works hard consistently.</li>
+      <li class="list-group-item"><strong>Resilience:</strong> He bounces back stronger after facing difficulties.</li>
+      <li class="list-group-item"><strong>Courage:</strong> He faces challenges with bravery and confidence.</li>
+      <li class="list-group-item"><strong>Integrity:</strong> He stays honest and trustworthy in all circumstances.</li>
+      <li class="list-group-item"><strong>Compassion:</strong> He uses his strength to protect and uplift others.</li>
+    </ul>
+
+    <p>
+      True strength is a harmony of body, mind, and heart. A strong man not only endures the storm but also becomes a shelter for others in it.
+    </p>
+  </article>
+
+  <div class="text-center">
+    <a (click)="goBack()" class="btn btn-secondary">← Back to Blog</a>
+  </div>
+</div>

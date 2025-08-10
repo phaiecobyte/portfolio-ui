@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&family=Moulpali&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'quill/dist/quill.snow.css';
+
 body{
     font-family: "Koh Santepheap", serif;
     background-color: #f8f9fa;

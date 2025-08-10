@@ -21,6 +21,9 @@
     border-bottom: 1px solid lightblue;
     padding-bottom: 13px;
 }
+nz-sider{
+    width: 500px;
+}
 nz-layout{
     min-height: 100%;
 }
