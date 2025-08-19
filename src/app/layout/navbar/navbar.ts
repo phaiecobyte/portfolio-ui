@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './navbar.css'
 })
 export class Navbar {
+  public auth = inject(AuthService);
+  private router = inject(Router);
   private languageService = inject(LanguageService);
   currentLang = this.languageService.getCurrentLang();
   collapseNavbar() {
@@ -18,6 +21,15 @@ export class Navbar {
     if (el?.classList.contains('show')) {
       el.classList.remove('show');
     }
+  }
+
+    logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+
+  dashboard(){
+    this.router.navigate(['/admin'])
   }
 
   navItems = [

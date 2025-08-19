@@ -36,11 +36,11 @@ export class AdminMain{
       icon: 'fa-solid fa-home', 
       routeLink: '/admin/dashboard'
     },
-    { 
-      label: 'Blog', 
-      icon: 'fa-solid fa-book-atlas', 
-      routeLink: '/admin/blog'
-    },
+    // { 
+    //   label: 'Blog', 
+    //   icon: 'fa-solid fa-book-atlas', 
+    //   routeLink: '/admin/blog'
+    // },
     { 
       label: 'Project', 
       icon: 'fa-solid fa-code', 

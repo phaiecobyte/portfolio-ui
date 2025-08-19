@@ -14,10 +14,11 @@ declare var bootstrap:any;
     <div class="modal-content position-relative">
 
       <!-- Spinner Overlay -->
-      <div *ngIf="isLoading" class="modal-loading-overlay d-flex justify-content-center align-items-center">
-        <app-spinner/>
-      </div>
-
+      @if(isLoading){
+        <div class="modal-loading-overlay d-flex justify-content-center align-items-center">
+          <app-spinner/>
+        </div>
+       }
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">{{title}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" [disabled]="isLoading"></button>
