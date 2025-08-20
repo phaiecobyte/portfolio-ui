@@ -1,19 +1,25 @@
+@if(isLoading){
+    <div class="loading-overlay">
+        <app-spinner title="Sending to telegram bot....!" message="Thank you!"/>
+    </div>
+}
+
 <div class="contact-container py-5 mt-5">
   <div class="container">
     <h2 class="mb-4 text-primary fw-bold text-center">{{'Get in Touch' | translate }}</h2>
     <p class="mb-4 text-muted text-center">{{`You're welcome to reach out for collaborations` | translate}}</p>
-    <form class="contact-form mx-auto" style="max-width: 500px;" netlify>
+    <form [formGroup]="frm" class="contact-form mx-auto" style="max-width: 500px;" netlify (ngSubmit)="sendMessage()">
       <div class="mb-3">
         <label for="name" class="form-label">{{'Your Name' | translate}}</label>
-        <input type="text" id="name" class="form-control" placeholder="Enter your name">
+        <input type="text" id="name" class="form-control" placeholder="Enter your name" formControlName="name">
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">{{'Your Email' | translate}}</label>
-        <input type="email" id="email" class="form-control" placeholder="Enter your email">
+        <input type="email" id="email" class="form-control" placeholder="Enter your email" formControlName="email">
       </div>
       <div class="mb-3">
         <label for="message" class="form-label">{{'Message' | translate}}</label>
-        <textarea id="message" rows="5" class="form-control" placeholder="Type your message"></textarea>
+        <textarea id="message" rows="5" class="form-control" placeholder="Type your message" formControlName="content"></textarea>
       </div>
       <button type="submit" class="btn btn-primary w-100">
         <i class="fa-solid fa-paper-plane me-2"></i>{{'Send Message' | translate}}

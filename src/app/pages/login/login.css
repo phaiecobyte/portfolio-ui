@@ -34,8 +34,8 @@
     background-color: rgba(255, 255, 255, 0.6);
     z-index: 1051;
 }
-  .blur {
+.blur {
     filter: blur(2px);
     pointer-events: none;
     user-select: none;
-  }
+}
