@@ -12,13 +12,22 @@ import { AlertService } from '../../services/alert.service';
 })
 export class ProjectComponent implements OnInit {
   isLoading:boolean=true;
-  projects: Project[] = [];
+  projects:Project[]=[
+    {
+      id:1,
+      name:'Personal Portfolio Website',
+      description:'A personal portfolio website to showcase my projects, skills, and experiences as a developer.',
+      tech:['Spring Boot','PostgreSQL','Angular','Bootstrap','Docker'],
+      sourceCodeUrl:'https://github.com/phaiecobyte/portfolio-ui',
+      demoVideoUrl:'https://www.youtube.com/embed/VyyFZ0bywdg',
+      createdAt:'',
+      createdBy:'',
+      updatedAt:'',
+      updatedBy:''
+    }
+  ];
   features:Array<string> = [
-    "Home, About, Blog, Contact, Exam Results, and Project pages.",
-    "Admin dashboard for managing blog posts, profile, skills, and more.",
-    "Secure login for admin access.",
-    "Reusable UI components and custom pipes.",
-    "Mobile-friendly, responsive design with Bootstrap."
+    'Responsive Design: The website is designed to be fully responsive, ensuring optimal viewing experience across various devices, including desktops, tablets, and mobile phones.',
   ]
   constructor(private service: ProjectService,private alertService:AlertService) {}
 

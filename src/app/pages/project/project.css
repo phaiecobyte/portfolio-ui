@@ -1,11 +1,15 @@
+/* ================= MOBILE ================= */
+.mobile-project-card {
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ================= DESKTOP ================= */
+.desktop-project-card {
+  border-radius: 12px;
+}
+
+/* Small polish */
 .card-title {
   font-weight: 600;
-}
-.badge {
-  font-size: 0.85rem;
-}
-.card a.btn:hover {
-  color: #fff;
-  background: #0d6efd;
-  border-color: #0d6efd;
 }

@@ -1,52 +1,141 @@
 <div class="container pt-3">
-  <h2 class="mb-4 text-success fw-bold">My Projects</h2>
 
-  <!-- Loading Message and Spinner -->
-  @if (isLoading) {
-  <div class="d-flex flex-column align-items-center my-5">
-    <div class="spinner-border text-success mb-3" role="status" style="width: 3rem; height: 3rem;">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-    <div class="text-center text-muted">
-      <p class="mb-0">Fetching data from server...</p>
-      <small>This may take up to 1 minute due to free server cold start. Thank you for your patience.</small>
-    </div>
-  </div>  
-  }
+  <h2 class="mb-4 text-success fw-bold text-center text-md-start">
+    My Projects
+  </h2>
 
-  <div class="row">
+  <!-- ================= LOADING ================= -->
+  <!-- @if (isLoading) {
+    <div class="d-flex flex-column align-items-center my-5">
+      <div class="spinner-border text-success mb-3"
+           style="width:3rem;height:3rem"></div>
+      <div class="text-center text-muted">
+        <p class="mb-0">Fetching data from server...</p>
+        <small>
+          This may take up to 1 minute due to free server cold start.
+        </small>
+      </div>
+    </div>
+  } -->
+
+  <!-- ================================================= -->
+  <!-- ================= MOBILE VIEW =================== -->
+  <!-- ================================================= -->
+  <div class="d-md-none">
+
     @for (project of projects; track $index) {
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">{{project.name}}</h5>
-            <p class="card-text">{{project.description}}</p>
-            <p class="card-text"><b>Feature</b></p>
-            @for (item of features; track $index) {
-              <li>{{item}}</li>
+
+      <div class="card mobile-project-card mb-3">
+        <div class="card-body">
+
+          <h6 class="fw-bold mb-1">{{ project.name }}</h6>
+          <p class="small text-muted mb-2">
+            {{ project.description }}
+          </p>
+
+          <!-- TECH -->
+          <div class="mb-2">
+            @for (tech of project.tech; track $index) {
+              <span class="badge bg-secondary me-1 mb-1">{{ tech }}</span>
             }
-            <div class="mb-2">
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-success btn-sm"
+               [href]="project.sourceCodeUrl"
+               target="_blank">
+              <i class="fa-brands fa-github me-1"></i>
+              Code
+            </a>
+
+            @if (project.demoVideoUrl) {
+              <button class="btn btn-outline-primary btn-sm"
+                      data-bs-toggle="collapse"
+                      [attr.data-bs-target]="'#demo' + $index">
+                Demo
+              </button>
+            }
+          </div>
+
+          <!-- COLLAPSE DEMO -->
+          @if (project.demoVideoUrl) {
+            <div class="collapse mt-3" [id]="'demo' + $index">
+              <div class="ratio ratio-16x9">
+                <iframe
+                  [src]="project.demoVideoUrl | safeUrl"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          }
+
+        </div>
+      </div>
+
+    }
+
+  </div>
+
+  <!-- ================================================= -->
+  <!-- ================= DESKTOP VIEW ================== -->
+  <!-- ================================================= -->
+  <div class="row d-none d-md-flex">
+
+    @for (project of projects; track $index) {
+
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm desktop-project-card">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              {{ project.name }}
+            </h5>
+
+            <p class="card-text small flex-grow-1">
+              {{ project.description }}
+            </p>
+
+            <!-- FEATURES -->
+            <p class="fw-semibold mb-1">Features</p>
+            <ul class="small">
+              @for (item of features; track $index) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+
+            <!-- TECH -->
+            <div class="mb-3">
               @for (tech of project.tech; track $index) {
-                <span class="badge bg-secondary me-1">{{tech}}</span>
+                <span class="badge bg-secondary me-1 mb-1">{{ tech }}</span>
               }
             </div>
-            <a href="{{project.sourceCodeUrl}}" target="_blank" class="btn btn-outline-success btn-sm">
-              <i class="fa-brands fa-github me-1"></i>View Code
+
+            <!-- CODE -->
+            <a class="btn btn-outline-success btn-sm mb-3"
+               [href]="project.sourceCodeUrl"
+               target="_blank">
+              <i class="fa-brands fa-github me-1"></i>
+              View Code
             </a>
+
+            <!-- DEMO -->
             @if (project.demoVideoUrl) {
-              <div class="mt-3 ratio ratio-16x9">
-                <iframe width="864" height="486" 
-                        [src]="project.demoVideoUrl| safeUrl"
-                        title="" 
-                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
-                        encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                      </iframe>
+              <div class="ratio ratio-16x9">
+                <iframe
+                  [src]="project.demoVideoUrl | safeUrl"
+                  allowfullscreen>
+                </iframe>
               </div>
             }
+
           </div>
         </div>
       </div>
+
     }
+
   </div>
+
 </div>

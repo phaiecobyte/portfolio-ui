@@ -1,101 +1,216 @@
-<div class="about-card p-4 mx-auto">
-  <div class="row align-items-center mb-4">
-    <div class="col-md-3 text-center mb-3 mb-md-0">
-      <img [src]="profileImage" alt="Phai Profile" class="about-photo rounded-circle shadow-lg" />
-    </div>
-    <div class="col-md-9">
-      <h2 class="fw-bold mb-1 text-gradient">{{myProfile.firstName}} {{myProfile.lastName}}</h2>
-      <h4 class="text-primary mb-3">{{myProfile.position}}</h4>
-      <p class="lead">🚀 {{myProfile.bio}}</p>
-    </div>
-  </div>
-  <hr>
-  <div class="row mb-4">
+<div class="about-card container py-4">
 
-    <!-- start left col -->
-    <div class="col-12 col-md-3 border pt-3 px-3">
-      <h5 class="fw-bold text-gradient">Contact</h5>
-      <ul class="list-unstyled mb-5">
-        @for (item of contacts; track $index) {
-        <li class="mb-3">
-          <a href="{{item.link}}" class="text-decoration-none text-dark">
-            <i class="{{item.icon}} me-3"></i>
-            {{item.name}}
-          </a>
-        </li>
-        }
-      </ul>
+  <!-- ================================================= -->
+  <!-- ================= MOBILE VIEW =================== -->
+  <!-- ================================================= -->
+  <div class="d-md-none">
 
-      <h5 class="fw-bold text-gradient">Education</h5>
-      <ul class="list-unstyled mb-5">
+    <div class="text-center mb-4">
+      <img [src]="profileImage" alt="Profile" class="about-photo rounded-circle shadow mb-3" />
+      <h2 class="fw-bold text-gradient mb-1">
+        {{ myProfile.firstName }} {{ myProfile.lastName }}
+      </h2>
+      <h6 class="text-primary mb-2">
+        {{ myProfile.position }}
+      </h6>
+      <p class="text-muted small px-3">
+        🚀 {{ myProfile.bio }}
+      </p>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="card mobile-card mb-3">
+      <div class="card-body">
+        <h6 class="section-title">Contact</h6>
+        <ul class="list-unstyled mb-0">
+          @for (item of contacts; track $index) {
+          <li class="mb-2">
+            <a [href]="item.link" class="d-flex align-items-center text-dark text-decoration-none">
+              <i class="{{ item.icon }} me-3 fs-5"></i>
+              {{ item.name }}
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="card mobile-card mb-3">
+      <div class="card-body">
+        <h6 class="section-title">Education</h6>
         @for (item of educations; track $index) {
-        <li class="mb-3">
-          <span class="fw-bold">{{item.degree}} {{item.major}}</span><br>
-          <span class="text-muted">{{item.schoolName}}</span>
-          <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span><br>
-          <span class="text-muted">{{item.address}}</span>
-        </li>
+        <div class="mb-3">
+          <div class="fw-semibold">
+            {{ item.degree }} {{ item.major }}
+          </div>
+          <div class="text-muted small">{{ item.schoolName }}</div>
+          <div class="text-muted small">
+            {{ item.startDate }} – {{ item.endDate }}
+          </div>
+        </div>
         }
-      </ul>
+      </div>
+    </div>
 
-      <h5 class="fw-bold text-gradient">Language</h5>
-      <ul class="list-unstyled mb-5">
+    <!-- LANGUAGES -->
+    <div class="card mobile-card mb-3">
+      <div class="card-body">
+        <h6 class="section-title">Languages</h6>
         @for (item of languages; track $index) {
-        <li>
-          <span class="{{item.icon}}"></span>
-          {{item.name}}
-        </li>
-        <div class="progress mb-2">
-          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>{{ item.name }}</span>
+            <span>{{ item.level }}%</span>
+          </div>
+          <div class="progress progress-sm">
+            <div class="progress-bar bg-success" [style.width.%]="item.level"></div>
+          </div>
         </div>
         }
-      </ul>
-
-      <h5 class="fw-bold text-gradient">Reference</h5>
-      <ul class="list-unstyled mb-5">
-        <!-- Add reference items here -->
-      </ul>
+      </div>
     </div>
-    <!-- end left col -->
 
-    <!-- start right column -->
-    <div class="col-12 col-md-9 border pt-3 px-3">
-      <div class="ms-md-5 mb-5">
-        <h5 class="fw-bold text-gradient">Experiences</h5>
+    <!-- EXPERIENCE -->
+    <div class="card mobile-card mb-3">
+      <div class="card-body">
+        <h6 class="section-title">Experience</h6>
         @for (item of experiences; track $index) {
-        <ul class="list-unstyled">
-          <li class="mb-3">
-            <span class="fw-bold">{{item.position}}</span> |
-            <span class="text-muted">{{item.startDate}} - </span>
-            @if (!item.endDate) { <span class="text-muted">Present</span> }
-            @else {
-            <span class="text-muted">{{item.endDate}}</span>
-            }
-            <br>
-            MIS Company | Phnom Penh 
-            <br>
-            {{item.description}}
-          </li>
-        </ul>
-        }
-      </div>
-
-      <div class="ms-md-5">
-        <h5 class="fw-bold text-gradient">Skills</h5>
-        @for (item of skills; track $index) {
-        <ul class="list-unstyled">
-          <li class="mb-3">
-            <i class="{{item.icon}} me-3"></i>
-            {{item.name}}
-          </li>
-        </ul>
-        <div class="progress mb-2">
-          <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
+        <div class="mb-4">
+          <div class="fw-semibold">{{ item.position }}</div>
+          <div class="text-muted small">
+            {{ item.startDate }} – {{ item.endDate || 'Present' }}
+          </div>
+          <p class="small mb-0">{{ item.description }}</p>
         </div>
         }
       </div>
     </div>
-    <!-- end right column -->
+
+    <!-- SKILLS -->
+    <div class="card mobile-card mb-4">
+      <div class="card-body">
+        <h6 class="section-title">Skills</h6>
+        @for (item of skills; track $index) {
+        <div class="mb-3">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>{{ item.name }}</span>
+            <span>{{ item.level }}%</span>
+          </div>
+          <div class="progress progress-sm">
+            <div class="progress-bar bg-success" [style.width.%]="item.level"></div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
 
   </div>
-</div>
+
+  <!-- ================================================= -->
+  <!-- ================= DESKTOP VIEW ================== -->
+  <!-- ================================================= -->
+  <div class="row d-none d-md-flex">
+
+    <div class="about-card p-4 mx-auto">
+      <div class="row align-items-center mb-4">
+        <div class="col-md-3 text-center mb-3 mb-md-0">
+          <img [src]="profileImage" alt="Phai Profile" class="about-photo rounded-circle shadow-lg" />
+        </div>
+        <div class="col-md-9">
+          <h2 class="fw-bold mb-1 text-gradient">{{myProfile.firstName}} {{myProfile.lastName}}</h2>
+          <h4 class="text-primary mb-3">{{myProfile.position}}</h4>
+          <p class="lead">🚀 {{myProfile.bio}}</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row mb-4">
+
+        <!-- start left col -->
+        <div class="col-12 col-md-3 border pt-3 px-3">
+          <h5 class="fw-bold text-gradient">Contact</h5>
+          <ul class="list-unstyled mb-5">
+            @for (item of contacts; track $index) {
+            <li class="mb-3">
+              <a href="{{item.link}}" class="text-decoration-none text-dark">
+                <i class="{{item.icon}} me-3"></i>
+                {{item.name}}
+              </a>
+            </li>
+            }
+          </ul>
+
+          <h5 class="fw-bold text-gradient">Education</h5>
+          <ul class="list-unstyled mb-5">
+            @for (item of educations; track $index) {
+            <li class="mb-3">
+              <span class="fw-bold">{{item.degree}} {{item.major}}</span><br>
+              <span class="text-muted">{{item.schoolName}}</span>
+              <span class="text-muted">{{item.startDate}} - {{item.endDate}}</span><br>
+              <span class="text-muted">{{item.address}}</span>
+            </li>
+            }
+          </ul>
+
+          <h5 class="fw-bold text-gradient">Language</h5>
+          <ul class="list-unstyled mb-5">
+            @for (item of languages; track $index) {
+            <li>
+              <span class="{{item.icon}}"></span>
+              {{item.name}}
+            </li>
+            <div class="progress mb-2">
+              <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
+            </div>
+            }
+          </ul>
+
+          <h5 class="fw-bold text-gradient">Reference</h5>
+          <ul class="list-unstyled mb-5">
+            <!-- Add reference items here -->
+          </ul>
+        </div>
+        <!-- end left col -->
+
+        <!-- start right column -->
+        <div class="col-12 col-md-9 border pt-3 px-3">
+          <div class="ms-md-5 mb-5">
+            <h5 class="fw-bold text-gradient">Experiences</h5>
+            @for (item of experiences; track $index) {
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <span class="fw-bold">{{item.position}}</span> |
+                <span class="text-muted">{{item.startDate}} - </span>
+                @if (!item.endDate) { <span class="text-muted">Present</span> }
+                @else {
+                <span class="text-muted">{{item.endDate}}</span>
+                }
+                <br>
+                MIS Company | Phnom Penh
+                <br>
+                {{item.description}}
+              </li>
+            </ul>
+            }
+          </div>
+
+          <div class="ms-md-5">
+            <h5 class="fw-bold text-gradient">Skills</h5>
+            @for (item of skills; track $index) {
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <i class="{{item.icon}} me-3"></i>
+                {{item.name}}
+              </li>
+            </ul>
+            <div class="progress mb-2">
+              <div class="progress-bar bg-success" role="progressbar" [style.width.%]="item.level"></div>
+            </div>
+            }
+          </div>
+        </div>
+        <!-- end right column -->
+
+      </div>
+    </div>
+  </div>

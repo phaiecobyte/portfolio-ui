@@ -1,46 +1,201 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body position-sticky" data-bs-theme="dark">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-      <img src="./phaiecobyte.svg" alt="Phaiecobyte logo" height="30" />
-      <span class="text-light h5 mb-0 d-none d-sm-inline">phaiecobyte</span>
+<!-- ================================================= -->
+<!-- ================= MOBILE NAVBAR ================= -->
+<!-- ================================================= -->
+<nav class="navbar navbar-dark bg-dark d-lg-none sticky-top">
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <img src="./phaiecobyte.svg" height="32" />
+      <span class="fw-semibold">phaiecobyte</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Toggle -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#mobileDrawer"
+      aria-controls="mobileDrawer">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        @for (item of navItems; track $index) {
-          <li class="nav-item">
-            <a class="nav-link"
-               (click)="collapseNavbar()"
-               [routerLink]="[item.routerLink]"
-               routerLinkActive="active"
-               [routerLinkActiveOptions]="{exact:true}">
-              <i class="{{item.icon}}"></i>
-              {{ item.label | translate }}
-            </a>
-          </li>
-        }
-      </ul>
-      <div class="dropdown me-2">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+  </div>
+</nav>
 
-          <i class="fa-solid fa-globe"></i>
+<!-- ================= MOBILE DRAWER ================= -->
+<div
+  class="offcanvas offcanvas-start text-bg-dark d-lg-none"
+  tabindex="-1"
+  id="mobileDrawer">
+
+  <!-- Header -->
+  <div class="offcanvas-header border-bottom border-secondary">
+    <h5 class="offcanvas-title d-flex align-items-center gap-2">
+      <img src="./phaiecobyte.svg" height="28" />
+      phaiecobyte
+    </h5>
+    <button
+      type="button"
+      class="btn-close btn-close-white"
+      data-bs-dismiss="offcanvas">
+    </button>
+  </div>
+
+  <!-- Body -->
+  <div class="offcanvas-body d-flex flex-column">
+
+    <!-- NAV ITEMS -->
+    <ul class="navbar-nav mb-4">
+      @for (item of navItems; track $index) {
+        <li class="nav-item">
+          <a
+            class="nav-link py-3"
+            [routerLink]="[item.routerLink]"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-bs-dismiss="offcanvas">
+            <i class="{{ item.icon }} me-3"></i>
+            {{ item.label | translate }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <hr class="border-secondary">
+
+    <!-- LANGUAGE -->
+    <div class="mb-4">
+      <div class="dropdown w-100">
+        <button
+          class="btn btn-outline-light w-100 dropdown-toggle"
+          data-bs-toggle="dropdown">
+          <i class="fa-solid fa-globe me-2"></i>
           {{ 'language.' + currentLang | translate }}
         </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-          <li><a class="dropdown-item" (click)="switchLanguage('en')"><span class="fi fi-sh me-1"></span> {{ 'language.en' | translate }} </a></li>
-          <li><a class="dropdown-item" (click)="switchLanguage('km')"><span class="fi fi-kh me-1"></span> {{ 'language.km' | translate }} </a></li>
+        <ul class="dropdown-menu w-100">
+          <li>
+            <button class="dropdown-item"
+                    (click)="switchLanguage('en')">
+              🇬🇧 {{ 'language.en' | translate }}
+            </button>
+          </li>
+          <li>
+            <button class="dropdown-item"
+                    (click)="switchLanguage('km')">
+              🇰🇭 {{ 'language.km' | translate }}
+            </button>
+          </li>
         </ul>
       </div>
-          <div *ngIf="auth.isLoggedIn(); else guestButtons">
-          <button class="btn btn-outline-danger ms-3" (click)="logout()">Logout</button>
-          <button class="btn btn-outline-success ms-3" (click)="dashboard()">Dashboard</button>
-        </div>
+    </div>
 
-        <ng-template #guestButtons>
-          <button class="btn btn-outline-success ms-3" routerLink="login">{{'Login' | translate}}</button>
-        </ng-template>
+    <!-- PUSH AUTH TO BOTTOM -->
+    <div class="mt-auto">
+
+      <div *ngIf="auth.isLoggedIn(); else guestMobile">
+        <button
+          class="btn btn-success w-100 mb-2"
+          (click)="dashboard()"
+          data-bs-dismiss="offcanvas">
+          Dashboard
+        </button>
+
+        <button
+          class="btn btn-outline-danger w-100"
+          (click)="logout()"
+          data-bs-dismiss="offcanvas">
+          Logout
+        </button>
+      </div>
+
+      <ng-template #guestMobile>
+        <button
+          class="btn btn-success w-100"
+          routerLink="/login"
+          data-bs-dismiss="offcanvas">
+          {{ 'Login' | translate }}
+        </button>
+      </ng-template>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================================================= -->
+<!-- ================= DESKTOP NAVBAR ================= -->
+<!-- ================================================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-flex sticky-top">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <img src="./phaiecobyte.svg" height="32" />
+      <span class="fw-semibold">phaiecobyte</span>
+    </a>
+
+    <!-- Links -->
+    <ul class="navbar-nav ms-4">
+      @for (item of navItems; track $index) {
+        <li class="nav-item">
+          <a
+            class="nav-link px-3"
+            [routerLink]="[item.routerLink]"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <i class="{{ item.icon }} me-1"></i>
+            {{ item.label | translate }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- Right -->
+    <div class="ms-auto d-flex align-items-center gap-3">
+
+      <!-- Language -->
+      <div class="dropdown">
+        <button
+          class="btn btn-sm btn-outline-light dropdown-toggle"
+          data-bs-toggle="dropdown">
+          <i class="fa-solid fa-globe me-1"></i>
+          {{ 'language.' + currentLang | translate }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <button class="dropdown-item"
+                    (click)="switchLanguage('en')">
+              EN {{ 'language.en' | translate }}
+            </button>
+          </li>
+          <li>
+            <button class="dropdown-item"
+                    (click)="switchLanguage('km')">
+              🇰🇭 {{ 'language.km' | translate }}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Auth -->
+      <div *ngIf="auth.isLoggedIn(); else guestDesktop"
+           class="d-flex gap-2">
+        <button class="btn btn-outline-success"
+                (click)="dashboard()">
+          Dashboard
+        </button>
+        <button class="btn btn-outline-danger"
+                (click)="logout()">
+          Logout
+        </button>
+      </div>
+
+      <ng-template #guestDesktop>
+        <button class="btn btn-success"
+                routerLink="/login">
+          {{ 'Login' | translate }}
+        </button>
+      </ng-template>
+
     </div>
   </div>
 </nav>
