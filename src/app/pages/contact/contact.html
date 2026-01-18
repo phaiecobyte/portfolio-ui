@@ -4,6 +4,12 @@
     </div>
 }
 
+@if(this.isLoading){
+    <div class="loading-overlay">
+        <app-spinner title="Sending to telegram bot....!" message="Thank you!"/>
+    </div>
+}
+
 <div class="contact-container py-5 mt-5">
   <div class="container">
     <h2 class="mb-4 text-primary fw-bold text-center">{{'Get in Touch' | translate }}</h2>

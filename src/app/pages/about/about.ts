@@ -42,7 +42,7 @@ export class About implements OnInit{
   ];
 
   experiences=[
-    {position:'Java Developer', company:'GDCE', type:'', startDate:'2025', endDate:'Present', description:'Develope, fix bugs and improve java applications .Research new technologies and improve performance and security of existing systems.'},
+    {position:'Java Developer', company:'GDCE | Phnom Penh', type:'', startDate:'2025', endDate:'Present', description:'Develope, fix bugs and improve java applications .Research new technologies and improve performance and security of existing systems.'},
   ]
 
   languages = [

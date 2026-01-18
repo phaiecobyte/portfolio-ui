@@ -1,9 +1,9 @@
 <section class="hero">
     <div class="hero-content">
       <div class="text">
-        <h1>Hello, I'm {{myProfile.firstName}}</h1>
-        <h2>{{myProfile.position}}</h2>
-        <p> {{myProfile.bio}}</p>
+        <h1>{{'myProfile.Hello, I\'m' | translate}} {{'myProfile.firstName' | translate}}</h1>
+        <h2>{{'myProfile.position' |translate}}</h2>
+        <p> {{'myProfile.bio' | translate}}</p>
         <div class="cta-buttons">
           <a (click)="goToProject()" class="btn primary">{{'See Projects' | translate}}</a>
           <a (click)="gotToContact()" class="btn secondary">{{'Contact Me' | translate}}</a>

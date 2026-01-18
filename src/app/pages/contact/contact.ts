@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, RequiredValidator, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ContactService } from '../../services/contact.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -24,13 +24,28 @@ export class Contact implements OnInit{
   ngOnInit(): void {
       this.frm = this.fb.group({
         id:[0],
-        name:[''],
-        email:[''],
-        content:['']
+        name:['',Validators.required],
+        email:['', [Validators.email, Validators.required]],
+        content:['', Validators.required]
       })
   }
 
+  
+
   sendMessage(){
+  
+    this.alert.warning(
+      'Service Unavailable',
+      'សូមអភ័យទោស! ខ្ញុំបានសម្រេចចិត្តបិទមាស៊ីនមេ ដូច្នេះអ្នកមិនអាចផ្ញើសារបានទេ។ សូមទាក់ទងតាមរយៈបណ្តាញសង្គមរបស់ខ្ញុំ។ អរគុណច្រើន!',
+      {
+        nzPlacement: 'bottomRight',
+        nzDuration: 10000
+      }
+    );
+
+    return; // stop execution
+
+
     this.isLoading = true;
     this.service.create(this.frm.value).subscribe({
       next:()=>{
